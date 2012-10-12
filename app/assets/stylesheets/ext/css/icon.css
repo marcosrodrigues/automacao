@@ -1,0 +1,19 @@
+.icon-add {
+    background-image: url('/assets/icons/fam/add.png');
+}
+
+.icon-delete {
+    background-image: url('/assets/icons/fam/delete.gif');
+}
+
+.icon-save {
+    background-image: url('/assets/icons/fam/accept.png');
+}
+
+.icon-cancel {
+    background-image: url('/assets/icons/fam/cross.gif');
+}
+
+.icon-edit {
+    background-image: url('/assets/icons/fam/edit.png');
+}

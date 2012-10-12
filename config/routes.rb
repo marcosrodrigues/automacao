@@ -1,6 +1,12 @@
 Automacao::Application.routes.draw do
   get "home/index"
 
+  # Tipo Produto
+  get "tipos_produto/lista"
+  post "tipos_produto/salvar"
+  delete "tipos_produto/excluir"
+  put "tipos_produto/alterar"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
