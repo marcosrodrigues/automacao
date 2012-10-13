@@ -17,7 +17,7 @@ var storeTipoProduto = Ext.create('Ext.data.Store', {
             root: 'json'
         }
     },
-    autoLoad: true
+    autoLoad: false
 });
 
 function inclusaoTiposProduto() {
@@ -112,6 +112,8 @@ function abrirCadastroTiposProduto() {
     if (cadastro) {
         cadastro.show();
     } else {
+        storeTipoProduto.load();
+
         Ext.create('Ext.Window', {
             title: 'Tipos de Produto',
             width: 600,
