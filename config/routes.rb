@@ -13,6 +13,12 @@ Automacao::Application.routes.draw do
   delete "produtos/excluir"
   put "produtos/alterar"
 
+  # Fornecedor
+  get "fornecedores/lista"
+  post "fornecedores/salvar"
+  delete "fornecedores/excluir"
+  put "fornecedores/alterar"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
