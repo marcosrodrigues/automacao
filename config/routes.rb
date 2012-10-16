@@ -1,4 +1,6 @@
 Automacao::Application.routes.draw do
+  get "vendas/index"
+
   get "home/index"
 
   # Tipo Produto

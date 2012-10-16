@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#left {
+  width: 20%;
+  float: left;
+  background-color: #f9f9f9;
+}
+
+#left .field {
+  margin-left: 20px;
+  margin-top: 20px;
+  font: 20px Arial, "MS Trebuchet", sans-serif;
+}
+
+#left .field input {
+  padding: 10px;
+  width: 150px;
+  font: 20px Arial, "MS Trebuchet", sans-serif;
+}
+
+#content {
+  width: 80%;
+  float: left;
+  font: 16px Arial, "MS Trebuchet", sans-serif;
+  background-color: #f1f1f1;
+}
+
+#content #grid {
+  overflow-y: scroll;
+}
+#content #grid table {
+  border-collapse:collapse;
+}
+#content #grid thead {
+  background-color: #bfd2e6;
+}
+#content #grid thead tr {
+  height: 20px;
+}
+#content #grid tbody tr {
+  height: 30px;
+}
+
+#footer {
+  width: 100%;
+  float: left;
+  background-color: #f9f9f9;
+}
