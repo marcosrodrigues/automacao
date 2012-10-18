@@ -29,6 +29,17 @@ class ProdutosController < ApplicationController
     end
   end
 
+  def pesquisa
+    if params[:term]
+      like = "%".concat(params[:term].upcase.concat("%"))
+      produtos = Produto.where("upper(descricao) like ?", like)
+    else
+      produtos = Produto.all
+    end
+    list = produtos.map { |p| Hash[id: p.id, label: p.descricao, name: p.descricao] }
+    render json: list
+  end
+
   def alterar
     produto = Produto.find(params[:id])
     produto.descricao = params[:descricao]

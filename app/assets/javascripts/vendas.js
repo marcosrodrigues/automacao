@@ -26,4 +26,13 @@ $(function(){
     $(window).resize(function(){
         reajusta();
     });
+
+    $('#pesquisa').autocomplete({
+        minLength: 2,
+        delay: 1000,
+        source: '/produtos/pesquisa',
+        select: function(event, ui) {
+
+        }
+    });
 });
