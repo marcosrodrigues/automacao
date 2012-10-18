@@ -9,10 +9,12 @@ $(function(){
         var widthLeft = $(window).width() * 0.2;
         var widthContent = $(window).width() * 0.8;
 
-        $('#left').css('height', heightLeftAndContent + 'px');
+        var heightHeader = $('#header').height();
+
+        $('#left').css('height', (heightLeftAndContent - heightHeader) + 'px');
         $('#left').css('width', widthLeft + 'px');
 
-        $('#content').css('height', heightLeftAndContent + 'px');
+        $('#content').css('height', (heightLeftAndContent - heightHeader) + 'px');
         $('#content').css('width', widthContent + 'px');
 
         $('#grid').css('height', heightLeftAndContent + 'px');
