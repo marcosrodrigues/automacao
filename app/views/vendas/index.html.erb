@@ -6,12 +6,12 @@
     <div class="field">
         <label>Total</label>
         <br/>
-        <input type="text" value="R$ 100,00" />
+        <input type="text" data-bind="value: total" />
     </div>
     <div class="field">
         <label>Desconto</label>
         <br/>
-        <input type="text" value="R$ 1,00" />
+        <input type="text" data-bind="value: desconto" />
     </div>
 </div>
 
@@ -28,120 +28,12 @@
     </table>
     <div id="grid">
       <table width="100%">
-        <tbody>
+        <tbody data-bind="foreach: produtos">
             <tr>
-              <td width="60%">Caneta</td>
-              <td width="10%" align="right">10</td>
-              <td align="right">1,00</td>
-              <td align="right">10,00</td>
-            </tr>
-            <tr>
-              <td width="60%">Caneta</td>
-              <td width="10%" align="right">10</td>
-              <td align="right">1,00</td>
-              <td align="right">10,00</td>
-            </tr>
-            <tr>
-              <td width="60%">Caneta</td>
-              <td width="10%" align="right">10</td>
-              <td align="right">1,00</td>
-              <td align="right">10,00</td>
-            </tr>
-            <tr>
-              <td width="60%">Caneta</td>
-              <td width="10%" align="right">10</td>
-              <td align="right">1,00</td>
-              <td align="right">10,00</td>
-            </tr>
-            <tr>
-              <td width="60%">Caneta</td>
-              <td width="10%" align="right">10</td>
-              <td align="right">1,00</td>
-              <td align="right">10,00</td>
-            </tr>
-            <tr>
-              <td width="60%">Caneta</td>
-              <td width="10%" align="right">10</td>
-              <td align="right">1,00</td>
-              <td align="right">10,00</td>
-            </tr>
-            <tr>
-              <td width="60%">Caneta</td>
-              <td width="10%" align="right">10</td>
-              <td align="right">1,00</td>
-              <td align="right">10,00</td>
-            </tr>
-            <tr>
-              <td width="60%">Caneta</td>
-              <td width="10%" align="right">10</td>
-              <td align="right">1,00</td>
-              <td align="right">10,00</td>
-            </tr>
-            <tr>
-              <td width="60%">Caneta</td>
-              <td width="10%" align="right">10</td>
-              <td align="right">1,00</td>
-              <td align="right">10,00</td>
-            </tr>
-            <tr>
-              <td width="60%">Caneta</td>
-              <td width="10%" align="right">10</td>
-              <td align="right">1,00</td>
-              <td align="right">10,00</td>
-            </tr>
-            <tr>
-              <td width="60%">Caneta</td>
-              <td width="10%" align="right">10</td>
-              <td align="right">1,00</td>
-              <td align="right">10,00</td>
-            </tr>
-            <tr>
-              <td width="60%">Caneta</td>
-              <td width="10%" align="right">10</td>
-              <td align="right">1,00</td>
-              <td align="right">10,00</td>
-            </tr>
-            <tr>
-              <td width="60%">Caneta</td>
-              <td width="10%" align="right">10</td>
-              <td align="right">1,00</td>
-              <td align="right">10,00</td>
-            </tr>
-            <tr>
-              <td width="60%">Caneta</td>
-              <td width="10%" align="right">10</td>
-              <td align="right">1,00</td>
-              <td align="right">10,00</td>
-            </tr>
-            <tr>
-              <td width="60%">Caneta</td>
-              <td width="10%" align="right">10</td>
-              <td align="right">1,00</td>
-              <td align="right">10,00</td>
-            </tr>
-            <tr>
-              <td width="60%">Caneta</td>
-              <td width="10%" align="right">10</td>
-              <td align="right">1,00</td>
-              <td align="right">10,00</td>
-            </tr>
-            <tr>
-              <td width="60%">Caneta</td>
-              <td width="10%" align="right">10</td>
-              <td align="right">1,00</td>
-              <td align="right">10,00</td>
-            </tr>
-            <tr>
-              <td width="60%">Caneta</td>
-              <td width="10%" align="right">10</td>
-              <td align="right">1,00</td>
-              <td align="right">10,00</td>
-            </tr>
-            <tr>
-              <td width="60%">Caneta</td>
-              <td width="10%" align="right">10</td>
-              <td align="right">1,00</td>
-              <td align="right">10,00</td>
+              <td width="60%" data-bind="text: nome"></td>
+              <td width="10%" align="right" data-bind="text: quantidade"></td>
+              <td align="right" data-bind="text: preco"></td>
+              <td align="right" data-bind="text: total">10,00</td>
             </tr>
         </tbody>
       </table>

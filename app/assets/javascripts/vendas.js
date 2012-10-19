@@ -1,3 +1,26 @@
+function ProdutoModel(nome){
+    this.nome = ko.observable(nome);
+    this.preco = ko.observable(10);
+    this.quantidade = ko.observable(1);
+
+    this.total = ko.computed(function(){
+        return this.preco() * this.quantidade();
+    }, this);
+}
+
+function VendasModel(){
+    this.desconto = ko.observable(0);
+    this.produtos = ko.observableArray([]);
+
+    this.total = ko.computed(function(){
+        return this.produtos().reduce(function (acumulador, item) {
+            return acumulador + item.total();
+        }, 0).toFixed(2);
+    }, this);
+}
+
+var vendas;
+
 $(function(){
 
     reajusta();
@@ -32,7 +55,14 @@ $(function(){
         delay: 1000,
         source: '/produtos/pesquisa',
         select: function(event, ui) {
-
+            vendas.produtos.push(new ProdutoModel(ui.item.label));
+        },
+        close: function() {
+            $('#pesquisa').val('');
         }
     });
+
+    vendas = new VendasModel();
+
+    ko.applyBindings(vendas);
 });

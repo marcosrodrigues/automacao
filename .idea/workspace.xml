@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3dee204-0eb4-4b7c-80f9-1c38228b4e37" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/vendas.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/vendas.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/vendas.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/vendas.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/vendas/index.html.erb" afterPath="$PROJECT_DIR$/app/views/vendas/index.html.erb" />
     </list>
     <ignored path="automacao.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,43 +26,34 @@
       <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/vendas/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="5" selection-start="382" selection-end="382" vertical-scroll-proportion="-3.125">
+            <state line="35" column="54" selection-start="1096" selection-end="1096" vertical-scroll-proportion="-17.541666">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vendas.css.scss" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/vendas.css.scss">
+      <file leaf-file-name="vendas.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/layouts/vendas.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="20" selection-start="216" selection-end="216" vertical-scroll-proportion="0.0">
+            <state line="9" column="38" selection-start="275" selection-end="275" vertical-scroll-proportion="-5.625">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vendas.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="vendas.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/vendas.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="17" selection-start="915" selection-end="915" vertical-scroll-proportion="0.0">
+            <state line="60" column="35" selection-start="1704" selection-end="1704" vertical-scroll-proportion="1.5126051">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.html.erb" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
+      <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../superbynet/app/views/carrinho_compras/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="43" selection-start="372" selection-end="372" vertical-scroll-proportion="0.27322406">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/routes.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="51" selection-start="383" selection-end="383" vertical-scroll-proportion="0.0">
+            <state line="72" column="33" selection-start="1914" selection-end="2054" vertical-scroll-proportion="-18.75">
               <folding />
             </state>
           </provider>
@@ -70,15 +63,6 @@
         <entry file="file://$PROJECT_DIR$/app/controllers/produtos_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state line="38" column="82" selection-start="1149" selection-end="1149" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="vendas.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/layouts/vendas.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="39" selection-start="105" selection-end="105" vertical-scroll-proportion="-2.5">
               <folding />
             </state>
           </provider>
@@ -109,13 +93,13 @@
         <option value="$PROJECT_DIR$/app/assets/javascripts/clientes.js" />
         <option value="$PROJECT_DIR$/app/controllers/clientes_controller.rb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/vendas.css.scss" />
-        <option value="$PROJECT_DIR$/app/views/vendas/index.html.erb" />
         <option value="$PROJECT_DIR$/../superbynet/app/assets/javascripts/produto.js" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/controllers/produtos_controller.rb" />
-        <option value="$PROJECT_DIR$/app/views/layouts/vendas.html.erb" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/vendas.js" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/layouts/vendas.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/vendas/index.html.erb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/vendas.js" />
       </list>
     </option>
   </component>
@@ -798,87 +782,9 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/environments/development.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/environments/production.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.37815127">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../superbynet/app/assets/javascripts/pagamento.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="99" selection-start="661" selection-end="661" vertical-scroll-proportion="0.38659793" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../superbynet/app/assets/stylesheets/site.css.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="240" column="0" selection-start="3240" selection-end="3491" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/vendas.css.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="20" selection-start="216" selection-end="216" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../superbynet/app/assets/javascripts/produto.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="8" selection-start="2133" selection-end="2166" vertical-scroll-proportion="0.66494846">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../superbynet/app/controllers/produtos_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="21" selection-start="1745" selection-end="2005" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../superbynet/config/routes.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="51" selection-start="374" selection-end="423" vertical-scroll-proportion="0.38659793">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/produto.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/routes.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="51" selection-start="383" selection-end="383" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/produtos_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="82" selection-start="1149" selection-end="1149" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/vendas.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="39" selection-start="105" selection-end="105" vertical-scroll-proportion="-2.5">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/vendas.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="17" selection-start="915" selection-end="915" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -890,16 +796,100 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/vendas/index.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="5" selection-start="382" selection-end="382" vertical-scroll-proportion="-3.125">
+        <state line="4" column="2" selection-start="59" selection-end="59" vertical-scroll-proportion="0.10928962">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
+    <entry file="file://$PROJECT_DIR$/config/routes.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="43" selection-start="372" selection-end="372" vertical-scroll-proportion="0.27322406">
+        <state line="16" column="51" selection-start="383" selection-end="383" vertical-scroll-proportion="0.40336135">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/vendas.css.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="20" selection-start="216" selection-end="216" vertical-scroll-proportion="0.45378152">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../superbynet/app/assets/javascripts/produto.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="72" column="61" selection-start="2300" selection-end="2300" vertical-scroll-proportion="0.742268">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/produtos_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="82" selection-start="1149" selection-end="1149" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../superbynet/app/assets/javascripts/pagamento.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="109" selection-start="536" selection-end="536" vertical-scroll-proportion="0.30927834">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../superbynet/app/assets/javascripts/lista-compras.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="106" selection-start="472" selection-end="472" vertical-scroll-proportion="-9.386598">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../superbynet/app/assets/javascripts/carrinho-compras.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="36" selection-start="389" selection-end="390" vertical-scroll-proportion="0.09243698">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../superbynet/app/assets/javascripts/site.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="106" selection-start="545" selection-end="545" vertical-scroll-proportion="0.41237113">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../superbynet/app/assets/javascripts/application.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="121" selection-start="496" selection-end="496" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../superbynet/app/views/carrinho_compras/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="72" column="33" selection-start="1914" selection-end="2054" vertical-scroll-proportion="-18.75">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/vendas.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="38" selection-start="275" selection-end="275" vertical-scroll-proportion="-5.625">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/vendas/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="54" selection-start="1096" selection-end="1096" vertical-scroll-proportion="-17.541666">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/vendas.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="35" selection-start="1704" selection-end="1704" vertical-scroll-proportion="1.5126051">
           <folding />
         </state>
       </provider>
