@@ -9,6 +9,7 @@
   <%= javascript_include_tag "fornecedores" %>
   <%= javascript_include_tag "produtos" %>
   <%= javascript_include_tag "tipos_produto" %>
+  <%= javascript_include_tag "contas_pagar" %>
   <%= csrf_meta_tags %>
 
   <style type="text/css">
@@ -98,7 +99,7 @@
                       },'-',{
                           text: 'Contas a Pagar',
                           handler: function(){
-
+                            abrirCadastroContasPagar();
                           }
                       },{
                           text: 'Contas a Receber',

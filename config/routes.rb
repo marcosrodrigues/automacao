@@ -28,6 +28,12 @@ Automacao::Application.routes.draw do
   delete "clientes/excluir"
   put "clientes/alterar"
 
+  # Conta a Pagar
+  get "contas_pagar/lista"
+  post "contas_pagar/salvar"
+  delete "contas_pagar/excluir"
+  put "contas_pagar/alterar"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

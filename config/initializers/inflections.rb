@@ -9,6 +9,7 @@ ActiveSupport::Inflector.inflections do |inflect|
    #inflect.uncountable %w( fish sheep )
    inflect.irregular 'tipo_produto', 'tipos_produto'
    inflect.irregular 'fornecedor', 'fornecedores'
+   inflect.irregular 'conta_pagar', 'contas_pagar'
 end
 #
 # These inflection rules are supported but not enabled by default:
