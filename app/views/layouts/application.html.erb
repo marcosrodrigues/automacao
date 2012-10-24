@@ -26,6 +26,23 @@
         margin-top: -150px; /* Half the height */
         margin-left: -200px; /* Half the width */
     }
+    #sair {
+        position: absolute;
+        top: 5px;
+        left: 97%;
+    }
+    #rodape {
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        width: 100%;
+        height: 50px;
+        background-color: #8FA8CE;
+        text-align: center;
+        padding: 5px;
+        font: 13px Arial, "MS Trebuchet", sans-serif;
+        color: #4E3E88;
+    }
   </style>
 
   <script type="text/javascript">
@@ -105,19 +122,9 @@
                   })
               },{
                   xtype: 'splitbutton',
-                  text: 'Relatórios e Listagens',
+                  text: 'Relatórios',
                   menu: new Ext.menu.Menu({
                       items: [{
-                          text: 'Listagem de Fornecedores',
-                          handler: function(){
-
-                          }
-                      },{
-                          text: 'Listagem de Produtos',
-                          handler: function(){
-
-                          }
-                      },{
                           text: 'Estoque',
                           handler: function(){
 
@@ -138,7 +145,14 @@
 
 <img src="/assets/logo.png" id="logo" />
 
+<%= link_to 'Sair', destroy_user_session_path, :method => :delete, :id => 'sair' %>
+
 <%= yield %>
+
+<div id="rodape">
+    <p>© 2012. Marcos Rodrigues</p>
+    <p>Contato: (85)9939-6967</p>
+</div>
 
 </body>
 </html>

@@ -207,6 +207,16 @@ function abrirCadastroContasReceber() {
                         }
                     }]
                 },{
+                    xtype: 'actioncolumn',
+                    width: 25,
+                    items: [{
+                        icon: '/assets/icons/fam/sales.png',
+                        tooltip: 'Recebimentos',
+                        handler: function(grid, rowIndex, colIndex) {
+
+                        }
+                    }]
+                },{
                     text     : 'Cliente',
                     flex     : 1,
                     dataIndex: 'cliente'

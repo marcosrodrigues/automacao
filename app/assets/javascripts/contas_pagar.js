@@ -207,6 +207,16 @@ function abrirCadastroContasPagar() {
                         }
                     }]
                 },{
+                    xtype: 'actioncolumn',
+                    width: 25,
+                    items: [{
+                        icon: '/assets/icons/fam/sales.png',
+                        tooltip: 'Pagamentos',
+                        handler: function(grid, rowIndex, colIndex) {
+
+                        }
+                    }]
+                },{
                     text     : 'Fornecedor',
                     flex     : 1,
                     dataIndex: 'fornecedor'
