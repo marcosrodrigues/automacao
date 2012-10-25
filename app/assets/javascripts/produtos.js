@@ -239,7 +239,7 @@ function edicaoPreco(produto_id, id, data, preco){
         id: 'dadosPreco',
         title: 'Dados',
         width: 275,
-        height: 175,
+        height: 120,
         modal: true,
         items: {
             xtype: 'panel',
@@ -264,7 +264,6 @@ function edicaoPreco(produto_id, id, data, preco){
                         url: 'produtos/alterar_preco',
                         method: 'put',
                         params: {
-                            produto_id: produto_id,
                             id: id,
                             data: Ext.getCmp('data').value,
                             preco: Ext.getCmp('preco').value

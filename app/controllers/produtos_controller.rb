@@ -1,7 +1,6 @@
 class ProdutosController < ApplicationController
   def salvar
-    produto = Produto.new(:descricao => params[:descricao], :codigo_barras => params[:codigo_barras],
-                          :preco_venda => params[:preco_venda])
+    produto = Produto.new(:descricao => params[:descricao], :codigo_barras => params[:codigo_barras])
     produto.tipo_produto = TipoProduto.find(params[:tipo_produto_id])
 
     if produto.save
@@ -17,7 +16,6 @@ class ProdutosController < ApplicationController
           :id => p.id,
           :descricao => p.descricao,
           :codigo_barras => p.codigo_barras,
-          :preco_venda => p.preco_venda,
           :tipo_produto_id => p.tipo_produto_id,
           :tipo_produto => p.tipo_produto && p.tipo_produto.descricao
       }
@@ -44,7 +42,6 @@ class ProdutosController < ApplicationController
     produto = Produto.find(params[:id])
     produto.descricao = params[:descricao]
     produto.codigo_barras = params[:codigo_barras]
-    produto.preco_venda = params[:preco_venda]
     produto.tipo_produto = TipoProduto.find(params[:tipo_produto_id])
 
     if produto.save
@@ -76,6 +73,26 @@ class ProdutosController < ApplicationController
       respond_to do |format|
         format.json { render :json => :success}
       end
+    end
+  end
+
+  def alterar_preco
+    preco_produto = PrecoProduto.find(params[:id])
+    preco_produto.data = params[:data]
+    preco_produto.preco = params[:preco]
+
+    if preco_produto.save
+      respond_to do |format|
+        format.json { render :json => :success}
+      end
+    end
+  end
+
+  def excluir_preco
+    PrecoProduto.find(params[:id]).destroy
+
+    respond_to do |format|
+      format.json { render :json => :success}
     end
   end
 end

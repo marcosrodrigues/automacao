@@ -19,7 +19,9 @@ Automacao::Application.routes.draw do
   post "produtos/salvar"
   post "produtos/salvar_preco"
   delete "produtos/excluir"
+  delete "produtos/excluir_preco"
   put "produtos/alterar"
+  put "produtos/alterar_preco"
   match "/produtos/pesquisa" => "produtos#pesquisa"
 
   # Fornecedor
