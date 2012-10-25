@@ -17,7 +17,8 @@ class ProdutosController < ApplicationController
           :descricao => p.descricao,
           :codigo_barras => p.codigo_barras,
           :tipo_produto_id => p.tipo_produto_id,
-          :tipo_produto => p.tipo_produto && p.tipo_produto.descricao
+          :tipo_produto => p.tipo_produto && p.tipo_produto.descricao,
+          :quantidade => p.quantidade
       }
     end
     respond_to do |format|

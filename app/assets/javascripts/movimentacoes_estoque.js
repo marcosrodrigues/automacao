@@ -1,17 +1,20 @@
-/*Ext.define('TipoProduto', {
+Ext.define('MovimentacaoEstoque', {
     extend: 'Ext.data.Model',
     fields: [
         {name: 'id', type: 'int'},
-        {name: 'descricao', type: 'string'}
+        {name: 'produto_id', type: 'int'},
+        {name: 'produto', type: 'string'},
+        {name: 'operacao', type: 'int'},
+        {name: 'quantidade', type: 'int'}
     ]
 });
 
 // create the data store
-var storeTipoProduto = Ext.create('Ext.data.Store', {
-    model: 'TipoProduto',
+var storeMovimentacaoEstoque = Ext.create('Ext.data.Store', {
+    model: 'MovimentacaoEstoque',
     proxy: {
         type: 'ajax',
-        url: 'tipos_produto/lista',
+        url: 'movimentacoes_estoque/lista',
         reader: {
             type: 'json',
             root: 'json'
@@ -20,34 +23,62 @@ var storeTipoProduto = Ext.create('Ext.data.Store', {
     autoLoad: false
 });
 
-function inclusaoTiposProduto() {
+function inclusaoMovimentacaoEstoque() {
     Ext.create('Ext.Window', {
-        id: 'dadosTipoProduto',
+        id: 'dadosMovimentacaoEstoque',
         title: 'Dados',
-        width: 275,
-        height: 100,
+        width: 290,
+        height: 145,
         modal: true,
+        resizable: false,
         items: {
             xtype: 'panel',
             items: [{
-                xtype: 'textfield',
-                id: 'txtDescricao',
-                fieldLabel: 'Descrição',
-                maxLength: 60,
-                autoFocus: true
+                xtype: 'combobox',
+                id: 'produto',
+                store: storeProduto,
+                displayField: 'descricao',
+                valueField: 'id',
+                fieldLabel: 'Produto',
+                emptyText: 'Selecione um Produto',
+                width: 270
+            },{
+                xtype: 'combobox',
+                id: 'operacao',
+                displayField: 'descricao',
+                valueField: 'id',
+                fieldLabel: 'Operação',
+                emptyText: 'Selecione uma Operação',
+                width: 270,
+                store: Ext.create('Ext.data.Store', {
+                    fields: ['id', 'descricao'],
+                    data: [
+                        {id: 1, descricao: 'Entrada'},
+                        {id: 2, descricao: 'Saída'}
+                    ]
+                })
+            },{
+                xtype: 'numberfield',
+                id: 'quantidade',
+                fieldLabel: 'Quantidade',
+                hideTrigger: true,
+                allowDecimals: false,
+                width: 150
             }],
             buttons: [{
                 text: 'Salvar',
                 iconCls: 'icon-save',
                 handler: function(){
                     Ext.Ajax.request({
-                        url: 'tipos_produto/salvar',
+                        url: 'movimentacoes_estoque/salvar',
                         params: {
-                            descricao: Ext.getCmp('txtDescricao').value
+                            produto_id: Ext.getCmp('produto').value,
+                            operacao: Ext.getCmp('operacao').value,
+                            quantidade: Ext.getCmp('quantidade').value
                         },
                         success: function(){
-                            Ext.getCmp('dadosTipoProduto').close();
-                            storeTipoProduto.load();
+                            Ext.getCmp('dadosMovimentacaoEstoque').close();
+                            storeMovimentacaoEstoque.load();
                         }
                     });
                 }
@@ -55,44 +86,74 @@ function inclusaoTiposProduto() {
                 text: 'Cancelar',
                 iconCls: 'icon-cancel',
                 handler: function(){
-                    Ext.getCmp('dadosTipoProduto').close();
+                    Ext.getCmp('dadosMovimentacaoEstoque').close();
                 }
             }]
         }
     }).show();
 }
 
-function edicaoTiposProduto(id, descricao){
+function edicaoMovimentacaoEstoque(id, produto_id, operacao, quantidade){
     Ext.create('Ext.Window', {
-        id: 'dadosTipoProduto',
+        id: 'dadosMovimentacaoEstoque',
         title: 'Dados',
-        width: 275,
-        height: 100,
+        width: 290,
+        height: 145,
         modal: true,
+        resizable: false,
         items: {
             xtype: 'panel',
             items: [{
-                xtype: 'textfield',
-                id: 'txtDescricao',
-                fieldLabel: 'Descrição',
-                maxLength: 60,
-                autoFocus: true,
-                value: descricao
+                xtype: 'combobox',
+                id: 'produto',
+                store: storeProduto,
+                displayField: 'descricao',
+                valueField: 'id',
+                fieldLabel: 'Produto',
+                emptyText: 'Selecione um Produto',
+                width: 270,
+                value: produto_id
+            },{
+                xtype: 'combobox',
+                id: 'operacao',
+                displayField: 'descricao',
+                valueField: 'id',
+                fieldLabel: 'Operação',
+                emptyText: 'Selecione uma Operação',
+                width: 270,
+                value: operacao,
+                store: Ext.create('Ext.data.Store', {
+                    fields: ['id', 'descricao'],
+                    data: [
+                        {id: 1, descricao: 'Entrada'},
+                        {id: 2, descricao: 'Saída'}
+                    ]
+                })
+            },{
+                xtype: 'numberfield',
+                id: 'quantidade',
+                fieldLabel: 'Quantidade',
+                hideTrigger: true,
+                allowDecimals: false,
+                width: 150,
+                value: quantidade
             }],
             buttons: [{
                 text: 'Salvar',
                 iconCls: 'icon-save',
                 handler: function(){
                     Ext.Ajax.request({
-                        url: 'tipos_produto/alterar',
+                        url: 'movimentacoes_estoque/alterar',
                         method: 'put',
                         params: {
                             id: id,
-                            descricao: Ext.getCmp('txtDescricao').value
+                            produto_id: Ext.getCmp('produto').value,
+                            operacao: Ext.getCmp('operacao').value,
+                            quantidade: Ext.getCmp('quantidade').value
                         },
                         success: function(){
-                            Ext.getCmp('dadosTipoProduto').close();
-                            storeTipoProduto.load();
+                            Ext.getCmp('dadosMovimentacaoEstoque').close();
+                            storeMovimentacaoEstoque.load();
                         }
                     });
                 }
@@ -100,19 +161,19 @@ function edicaoTiposProduto(id, descricao){
                 text: 'Cancelar',
                 iconCls: 'icon-cancel',
                 handler: function(){
-                    Ext.getCmp('dadosTipoProduto').close();
+                    Ext.getCmp('dadosMovimentacaoEstoque').close();
                 }
             }]
         }
     }).show();
-}*/
+}
 
 function abrirMovimentacoesEstoque() {
     var cadastro = Ext.getCmp('movimentacoesEstoque');
     if (cadastro) {
         cadastro.show();
     } else {
-        //storeTipoProduto.load();
+        storeMovimentacaoEstoque.load();
 
         Ext.create('Ext.Window', {
             title: 'Movimentar Estoque',
@@ -120,10 +181,11 @@ function abrirMovimentacoesEstoque() {
             height: 350,
             plain: true,
             layout: 'fit',
+            resizable: false,
             id: 'movimentacoesEstoque',
             items: {
                 xtype: 'grid',
-                //store: storeTipoProduto,
+                store: storeMovimentacaoEstoque,
                 stateful: true,
                 stateId: 'stateGrid',
                 columns: [{
@@ -131,25 +193,25 @@ function abrirMovimentacoesEstoque() {
                     width: 25,
                     items: [{
                         icon: '/assets/icons/fam/delete.gif',
-                        tooltip: 'Excluir Tipo de Produto',
+                        tooltip: 'Excluir Movimentação de Estoque',
                         handler: function(grid, rowIndex, colIndex) {
                             Ext.Msg.show({
                                 title: 'Confirmação',
-                                msg: 'Deseja excluir este tipo de produto?',
+                                msg: 'Deseja excluir esta movimentação de estoque?',
                                 buttons: Ext.Msg.YESNO,
                                 icon: Ext.Msg.QUESTION,
                                 fn: function(btn){
                                     if (btn == 'yes') {
-                                        var rec = storeTipoProduto.getAt(rowIndex);
+                                        var rec = storeMovimentacaoEstoque.getAt(rowIndex);
 
                                         Ext.Ajax.request({
-                                            url: 'tipos_produto/excluir',
+                                            url: 'movimentacoes_estoque/excluir',
                                             method: 'delete',
                                             params: {
                                                 id: rec.get('id')
                                             },
                                             success: function(){
-                                                storeTipoProduto.load();
+                                                storeMovimentacaoEstoque.load();
                                             }
                                         });
                                     }
@@ -162,11 +224,11 @@ function abrirMovimentacoesEstoque() {
                     width: 25,
                     items: [{
                         icon: '/assets/icons/fam/edit.png',
-                        tooltip: 'Editar Tipo de Produto',
+                        tooltip: 'Editar Movimentação de Estoque',
                         handler: function(grid, rowIndex, colIndex) {
-                            var rec = storeTipoProduto.getAt(rowIndex);
+                            var rec = storeMovimentacaoEstoque.getAt(rowIndex);
 
-                            edicaoTiposProduto(rec.get('id'), rec.get('descricao'));
+                            edicaoMovimentacaoEstoque(rec.get('id'), rec.get('produto_id'), rec.get('operacao'), rec.get('quantidade'));
                         }
                     }]
                 },{
@@ -175,7 +237,10 @@ function abrirMovimentacoesEstoque() {
                     dataIndex: 'produto'
                 },{
                     text     : 'Operação',
-                    dataIndex: 'opercao'
+                    dataIndex: 'operacao',
+                    renderer: function(value) {
+                        return value == 1 ? 'Entrada' : 'Saída';
+                    }
                 },{
                     text     : 'Quantidade',
                     dataIndex: 'quantidade'
@@ -191,7 +256,7 @@ function abrirMovimentacoesEstoque() {
                         text: 'Fazer Lançamento',
                         iconCls: 'icon-add',
                         handler: function(){
-                            //inclusaoTiposProduto();
+                            inclusaoMovimentacaoEstoque();
                         }
                     }]
                 }]

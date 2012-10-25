@@ -5,7 +5,8 @@ Ext.define('Produto', {
         {name: 'descricao', type: 'string'},
         {name: 'codigo_barras', type: 'string'},
         {name: 'tipo_produto_id', type: 'int'},
-        {name: 'tipo_produto', type: 'string'}
+        {name: 'tipo_produto', type: 'string'},
+        {name: 'quantidade', type: 'int'}
     ]
 });
 
@@ -45,14 +46,6 @@ function inclusaoProdutos() {
                 maxLength: 60,
                 autoFocus: true
             },{
-                xtype: 'numberfield',
-                id: 'txtPrecoVenda',
-                fieldLabel: 'Preço de Venda',
-                maxLength: 60,
-                autoFocus: true,
-                decimalSeparator: ',',
-                hideTrigger: true
-            },{
                 xtype: 'combobox',
                 id: 'tipoProduto',
                 store: storeTipoProduto,
@@ -70,7 +63,6 @@ function inclusaoProdutos() {
                         params: {
                             descricao: Ext.getCmp('txtDescricao').value,
                             codigo_barras: Ext.getCmp('txtCodigoBarras').value,
-                            preco_venda: Ext.getCmp('txtPrecoVenda').value,
                             tipo_produto_id: Ext.getCmp('tipoProduto').value
                         },
                         success: function(){
@@ -90,7 +82,7 @@ function inclusaoProdutos() {
     }).show();
 }
 
-function edicaoProduto(id, descricao, codigo_barras, preco_venda, tipo_produto_id){
+function edicaoProduto(id, descricao, codigo_barras, tipo_produto_id){
     Ext.create('Ext.Window', {
         id: 'dadosProduto',
         title: 'Dados',
@@ -114,15 +106,6 @@ function edicaoProduto(id, descricao, codigo_barras, preco_venda, tipo_produto_i
                 autoFocus: true,
                 value: codigo_barras
             },{
-                xtype: 'numberfield',
-                id: 'txtPrecoVenda',
-                fieldLabel: 'Preço de Venda',
-                maxLength: 60,
-                autoFocus: true,
-                decimalSeparator: ',',
-                hideTrigger: true,
-                value: preco_venda
-            },{
                 xtype: 'combobox',
                 id: 'tipoProduto',
                 store: storeTipoProduto,
@@ -143,7 +126,6 @@ function edicaoProduto(id, descricao, codigo_barras, preco_venda, tipo_produto_i
                             id: id,
                             descricao: Ext.getCmp('txtDescricao').value,
                             codigo_barras: Ext.getCmp('txtCodigoBarras').value,
-                            preco_venda: Ext.getCmp('txtPrecoVenda').value,
                             tipo_produto_id: Ext.getCmp('tipoProduto').value
                         },
                         success: function(){
@@ -434,8 +416,7 @@ function abrirCadastroProdutos() {
                         handler: function(grid, rowIndex, colIndex) {
                             var rec = storeProduto.getAt(rowIndex);
 
-                            edicaoProduto(rec.get('id'), rec.get('descricao'), rec.get('codigo_barras'),
-                                rec.get('preco_venda'), rec.get('tipo_produto_id'));
+                            edicaoProduto(rec.get('id'), rec.get('descricao'), rec.get('codigo_barras'), rec.get('tipo_produto_id'));
                         }
                     }]
                 },{
@@ -470,6 +451,9 @@ function abrirCadastroProdutos() {
                 },{
                     text     : 'Tipo de Produto',
                     dataIndex: 'tipo_produto'
+                },{
+                    text     : 'Quantidade',
+                    dataIndex: 'quantidade'
                 }],
                 width: 800,
                 height: 500,

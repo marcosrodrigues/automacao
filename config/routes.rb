@@ -48,6 +48,12 @@ Automacao::Application.routes.draw do
   delete "contas_receber/excluir"
   put "contas_receber/alterar"
 
+  # Movimentação de Estoque
+  get "movimentacoes_estoque/lista"
+  post "movimentacoes_estoque/salvar"
+  delete "movimentacoes_estoque/excluir"
+  put "movimentacoes_estoque/alterar"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
