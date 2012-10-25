@@ -15,7 +15,9 @@ Automacao::Application.routes.draw do
 
   # Produto
   get "produtos/lista"
+  get "produtos/precos"
   post "produtos/salvar"
+  post "produtos/salvar_preco"
   delete "produtos/excluir"
   put "produtos/alterar"
   match "/produtos/pesquisa" => "produtos#pesquisa"

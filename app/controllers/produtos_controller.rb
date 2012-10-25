@@ -61,4 +61,21 @@ class ProdutosController < ApplicationController
       format.json { render :json => :success}
     end
   end
+
+  def precos
+    respond_to do |format|
+      format.json { render :json => PrecoProduto.find_all_by_produto_id(params[:id])}
+    end
+  end
+
+  def salvar_preco
+    preco_produto = PrecoProduto.new(:data => params[:data], :preco => params[:preco])
+    preco_produto.produto = Produto.find(params[:produto_id])
+
+    if preco_produto.save
+      respond_to do |format|
+        format.json { render :json => :success}
+      end
+    end
+  end
 end

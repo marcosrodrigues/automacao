@@ -4,7 +4,6 @@ Ext.define('Produto', {
         {name: 'id', type: 'int'},
         {name: 'descricao', type: 'string'},
         {name: 'codigo_barras', type: 'string'},
-        {name: 'preco_venda', type: 'float'},
         {name: 'tipo_produto_id', type: 'int'},
         {name: 'tipo_produto', type: 'string'}
     ]
@@ -164,6 +163,218 @@ function edicaoProduto(id, descricao, codigo_barras, preco_venda, tipo_produto_i
     }).show();
 }
 
+Ext.define('Preco', {
+    extend: 'Ext.data.Model',
+    fields: [
+        {name: 'id', type: 'int'},
+        {name: 'data', type: 'date'},
+        {name: 'preco', type: 'float'}
+    ]
+});
+
+// create the data store
+var storePreco = Ext.create('Ext.data.Store', {
+    model: 'Preco',
+    proxy: {
+        type: 'ajax',
+        url: 'produtos/precos',
+        reader: {
+            type: 'json',
+            root: 'json'
+        }
+    },
+    autoLoad: false
+});
+
+function inclusaoPreco(produto_id) {
+    Ext.create('Ext.Window', {
+        id: 'dadosPreco',
+        title: 'Dados',
+        width: 275,
+        height: 120,
+        modal: true,
+        items: {
+            xtype: 'panel',
+            items: [{
+                xtype: 'datefield',
+                id: 'data',
+                fieldLabel: 'Data'
+            },{
+                xtype: 'numberfield',
+                id: 'preco',
+                fieldLabel: 'Preço',
+                decimalSeparator: ',',
+                hideTrigger: true
+            }],
+            buttons: [{
+                text: 'Salvar',
+                iconCls: 'icon-save',
+                handler: function(){
+                    Ext.Ajax.request({
+                        url: 'produtos/salvar_preco',
+                        params: {
+                            produto_id: produto_id,
+                            data: Ext.getCmp('data').value,
+                            preco: Ext.getCmp('preco').value
+                        },
+                        success: function(){
+                            Ext.getCmp('dadosPreco').close();
+                            storePreco.load({id: produto_id});
+                        }
+                    });
+                }
+            },{
+                text: 'Cancelar',
+                iconCls: 'icon-cancel',
+                handler: function(){
+                    Ext.getCmp('dadosPreco').close();
+                }
+            }]
+        }
+    }).show();
+}
+
+function edicaoPreco(produto_id, id, data, preco){
+    Ext.create('Ext.Window', {
+        id: 'dadosPreco',
+        title: 'Dados',
+        width: 275,
+        height: 175,
+        modal: true,
+        items: {
+            xtype: 'panel',
+            items: [{
+                xtype: 'datefield',
+                id: 'data',
+                fieldLabel: 'Data',
+                value: data
+            },{
+                xtype: 'numberfield',
+                id: 'preco',
+                fieldLabel: 'Preço',
+                decimalSeparator: ',',
+                hideTrigger: true,
+                value: preco
+            }],
+            buttons: [{
+                text: 'Salvar',
+                iconCls: 'icon-save',
+                handler: function(){
+                    Ext.Ajax.request({
+                        url: 'produtos/alterar_preco',
+                        method: 'put',
+                        params: {
+                            produto_id: produto_id,
+                            id: id,
+                            data: Ext.getCmp('data').value,
+                            preco: Ext.getCmp('preco').value
+                        },
+                        success: function(){
+                            Ext.getCmp('dadosPreco').close();
+                            storePreco.load({id: produto_id});
+                        }
+                    });
+                }
+            },{
+                text: 'Cancelar',
+                iconCls: 'icon-cancel',
+                handler: function(){
+                    Ext.getCmp('dadosPreco').close();
+                }
+            }]
+        }
+    }).show();
+}
+
+function abrirPrecos(id, descricao) {
+    storePreco.load({id: id});
+
+    Ext.create('Ext.Window', {
+        title: 'Preços: ' + descricao,
+        width: 500,
+        height: 200,
+        plain: true,
+        layout: 'fit',
+        id: 'precos',
+        modal: true,
+        resizable: false,
+        items: {
+            xtype: 'grid',
+            store: storePreco,
+            stateful: true,
+            stateId: 'stateGrid',
+            columns: [{
+                xtype: 'actioncolumn',
+                width: 25,
+                items: [{
+                    icon: '/assets/icons/fam/delete.gif',
+                    tooltip: 'Excluir Preço',
+                    handler: function(grid, rowIndex, colIndex) {
+                        Ext.Msg.show({
+                            title: 'Confirmação',
+                            msg: 'Deseja excluir este preco?',
+                            buttons: Ext.Msg.YESNO,
+                            icon: Ext.Msg.QUESTION,
+                            fn: function(btn){
+                                if (btn == 'yes') {
+                                    var rec = storePreco.getAt(rowIndex);
+
+                                    Ext.Ajax.request({
+                                        url: 'produtos/excluir_preco',
+                                        method: 'delete',
+                                        params: {
+                                            id: rec.get('id')
+                                        },
+                                        success: function(){
+                                            storePreco.load({id: id});
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                    }
+                }]
+            },{
+                xtype: 'actioncolumn',
+                width: 25,
+                items: [{
+                    icon: '/assets/icons/fam/edit.png',
+                    tooltip: 'Editar Preco',
+                    handler: function(grid, rowIndex, colIndex) {
+                        var rec = storePreco.getAt(rowIndex);
+
+                        edicaoPreco(id, rec.get('id'), rec.get('data'), rec.get('preco'));
+                    }
+                }]
+            },{
+                xtype: 'datecolumn',
+                text: 'Data',
+                dataIndex: 'data',
+                flex: 1
+            },{
+                text     : 'Preço',
+                dataIndex: 'preco',
+                flex: 1
+            }],
+            width: 500,
+            height: 200,
+            viewConfig: {
+                stripeRows: true
+            },
+            dockedItems: [{
+                xtype: 'toolbar',
+                items: [{
+                    text: 'Novo',
+                    iconCls: 'icon-add',
+                    handler: function(){
+                        inclusaoPreco(id);
+                    }
+                }]
+            }]
+        }
+    }).show();
+}
+
 function abrirCadastroProdutos() {
     var cadastro = Ext.getCmp('gridProdutos');
     if (cadastro) {
@@ -173,11 +384,12 @@ function abrirCadastroProdutos() {
 
         Ext.create('Ext.Window', {
             title: 'Produtos',
-            width: 600,
-            height: 350,
+            width: 800,
+            height: 500,
             plain: true,
             layout: 'fit',
             id: 'gridProdutos',
+            resizable: false,
             items: {
                 xtype: 'grid',
                 store: storeProduto,
@@ -228,28 +440,40 @@ function abrirCadastroProdutos() {
                         }
                     }]
                 },{
+                    xtype: 'actioncolumn',
+                    width: 25,
+                    items: [{
+                        icon: '/assets/icons/fam/fornecedores.png',
+                        tooltip: 'Fornecedores',
+                        handler: function(grid, rowIndex, colIndex) {
+                            var rec = storeProduto.getAt(rowIndex);
+                        }
+                    }]
+                },{
+                    xtype: 'actioncolumn',
+                    width: 25,
+                    items: [{
+                        icon: '/assets/icons/fam/sales.png',
+                        tooltip: 'Preços',
+                        handler: function(grid, rowIndex, colIndex) {
+                            var rec = storeProduto.getAt(rowIndex);
+
+                            abrirPrecos(rec.get('id'), rec.get('descricao'));
+                        }
+                    }]
+                },{
                     text     : 'Descrição',
                     flex     : 1,
-                    sortable : false,
                     dataIndex: 'descricao'
                 },{
                     text     : 'Código de Barras',
-                    flex     : 1,
-                    sortable : false,
                     dataIndex: 'codigo_barras'
                 },{
-                    text     : 'Preço de Venda',
-                    flex     : 1,
-                    sortable : false,
-                    dataIndex: 'preco_venda'
-                },{
                     text     : 'Tipo de Produto',
-                    flex     : 1,
-                    sortable : false,
                     dataIndex: 'tipo_produto'
                 }],
-                height: 350,
-                width: 600,
+                width: 800,
+                height: 500,
                 viewConfig: {
                     stripeRows: true
                 },

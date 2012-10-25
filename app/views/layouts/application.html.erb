@@ -26,10 +26,12 @@
         margin-top: -150px; /* Half the height */
         margin-left: -200px; /* Half the width */
     }
-    #sair {
+    #login {
         position: absolute;
         top: 30px;
-        left: 97%;
+        width: 100%;
+        text-align: right;
+        padding-right: 10px;
     }
     #rodape {
         position: absolute;
@@ -145,7 +147,10 @@
 
 <img src="/assets/logo.png" id="logo" />
 
-<%= link_to 'Sair', destroy_user_session_path, :method => :delete, :id => 'sair' %>
+<div id="login">
+  <label><%= current_user.email %></label>
+  <%= link_to 'Sair', destroy_user_session_path, :method => :delete, :id => 'sair' %>
+</div>
 
 <%= yield %>
 

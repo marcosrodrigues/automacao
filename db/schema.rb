@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121024001526) do
+ActiveRecord::Schema.define(:version => 20121025003332) do
 
   create_table "clientes", :force => true do |t|
     t.string   "nome"
@@ -47,11 +47,20 @@ ActiveRecord::Schema.define(:version => 20121024001526) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "precos_produto", :force => true do |t|
+    t.integer  "produto_id"
+    t.date     "data"
+    t.float    "preco"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "precos_produto", ["produto_id"], :name => "index_precos_produto_on_produto_id"
+
   create_table "produtos", :force => true do |t|
     t.integer  "tipo_produto_id"
     t.string   "descricao"
     t.string   "codigo_barras"
-    t.float    "preco_venda"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
