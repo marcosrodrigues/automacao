@@ -12,6 +12,7 @@ ActiveSupport::Inflector.inflections do |inflect|
    inflect.irregular 'conta_pagar', 'contas_pagar'
    inflect.irregular 'conta_receber', 'contas_receber'
    inflect.irregular 'preco_produto', 'precos_produto'
+   inflect.irregular 'movimentacao_estoque', 'movimentacoes_estoque'
 end
 #
 # These inflection rules are supported but not enabled by default:

@@ -1,0 +1,2 @@
+class MovimentacoesEstoqueController < ApplicationController
+end

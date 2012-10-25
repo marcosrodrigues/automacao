@@ -11,6 +11,7 @@
   <%= javascript_include_tag "tipos_produto" %>
   <%= javascript_include_tag "contas_pagar" %>
   <%= javascript_include_tag "contas_receber" %>
+  <%= javascript_include_tag "movimentacoes_estoque" %>
   <%= csrf_meta_tags %>
 
   <style type="text/css">
@@ -108,7 +109,7 @@
                           text: 'Movimentar Estoque',
                           icon: '/assets/icons/fam/stock.png',
                           handler: function(){
-
+                              abrirMovimentacoesEstoque();
                           }
                       },'-',{
                           text: 'Contas a Pagar',
