@@ -1,4 +1,5 @@
-function ProdutoModel(nome){
+function ProdutoModel(id, nome){
+    this.id = id;
     this.nome = ko.observable(nome);
     this.preco = ko.observable(10);
     this.quantidade = ko.observable(1);
@@ -23,6 +24,37 @@ var vendas;
 
 $(function(){
 
+    shortcut.add('F2', function(){
+        $('#pesquisa').focus();
+    });
+
+    shortcut.add('F3', function(){
+        $( '#fechar-venda' ).dialog({
+            title: 'Fechar Venda',
+            modal: true,
+            resizable: false,
+            height: 300,
+            width: 400,
+            buttons: {
+                Fechar: function(){
+                    $.ajax({
+                        type: 'post',
+                        url: '/vendas/fechar/',
+                        data: {
+                            desconto: vendas.desconto(),
+                            itens: vendas.produtos()
+                        },
+                        dataType: 'json',
+                        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'))},
+                        success: function() {
+                            $('#fechar-venda').dialog('close');
+                        }
+                    });
+                }
+            }
+        });
+    });
+
     reajusta();
 
     function reajusta(){
@@ -30,7 +62,7 @@ $(function(){
         var heightFooter = $(window).height() * 0.2;
 
         var widthLeft = $(window).width() * 0.2;
-        var widthContent = $(window).width() * 0.8;
+        var widthContent = $(window).width() * 0.75;
 
         var heightHeader = $('#header').height();
 
@@ -55,7 +87,7 @@ $(function(){
         delay: 1000,
         source: '/produtos/pesquisa',
         select: function(event, ui) {
-            vendas.produtos.push(new ProdutoModel(ui.item.label));
+            vendas.produtos.push(new ProdutoModel(ui.item.id, ui.item.label));
         },
         close: function() {
             $('#pesquisa').val('');

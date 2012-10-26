@@ -3,7 +3,9 @@ Automacao::Application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
 
+  # Venda
   get "vendas/index"
+  post "vendas/fechar"
 
   get "home/index"
 

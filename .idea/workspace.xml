@@ -4,10 +4,12 @@
     <list default="true" id="a3dee204-0eb4-4b7c-80f9-1c38228b4e37" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/movimentacoes_estoque.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/movimentacoes_estoque.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/produtos.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/produtos.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/vendas.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/vendas.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/movimentacoes_estoque_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/movimentacoes_estoque_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/produtos_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/produtos_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/produto.rb" afterPath="$PROJECT_DIR$/app/models/produto.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/vendas_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/vendas_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/vendas.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/vendas.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/vendas/index.html.erb" afterPath="$PROJECT_DIR$/app/views/vendas/index.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/inflections.rb" afterPath="$PROJECT_DIR$/config/initializers/inflections.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
     </list>
@@ -28,19 +30,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="movimentacoes_estoque_controller.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/movimentacoes_estoque_controller.rb">
+      <file leaf-file-name="vendas.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/vendas.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="47" selection-start="514" selection-end="514" vertical-scroll-proportion="0.0">
+            <state line="89" column="62" selection-start="2670" selection-end="2670" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="movimentacoes_estoque.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/movimentacoes_estoque.js">
+      <file leaf-file-name="vendas_controller.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/vendas_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="234" column="24" selection-start="8447" selection-end="8447" vertical-scroll-proportion="6.0309277">
+            <state line="13" column="52" selection-start="321" selection-end="321" vertical-scroll-proportion="0.3277311">
               <folding />
             </state>
           </provider>
@@ -62,22 +64,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/models/user.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/users.js" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/contas_pagar.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/contas_receber.js" />
         <option value="$PROJECT_DIR$/app/controllers/application_controller.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20121025003332_remove_preco_venda_produto.rb" />
-        <option value="$PROJECT_DIR$/config/initializers/inflections.rb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-        <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/models/produto.rb" />
         <option value="$PROJECT_DIR$/app/controllers/produtos_controller.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/produtos.js" />
         <option value="$PROJECT_DIR$/db/migrate/20121025155812_add_quantidade_produto.rb" />
         <option value="$PROJECT_DIR$/app/controllers/movimentacoes_estoque_controller.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/movimentacoes_estoque.js" />
+        <option value="$PROJECT_DIR$/app/views/layouts/vendas.html.erb" />
+        <option value="$PROJECT_DIR$/config/initializers/inflections.rb" />
+        <option value="$PROJECT_DIR$/config/routes.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20121026003012_add_desconto_to_venda.rb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/vendas.js" />
+        <option value="$PROJECT_DIR$/app/controllers/vendas_controller.rb" />
       </list>
     </option>
   </component>
@@ -193,6 +195,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="initializers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="automacao" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="automacao" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendas" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -333,6 +357,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/views/vendas/index.html.erb" />
     <property name="RailsGeneratorsPopup.hiddenIncluded" value="false" />
     <property name="dynamic.classpath" value="false" />
   </component>
@@ -665,62 +690,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/contas_pagar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="226" column="39" selection-start="7850" selection-end="7869" vertical-scroll-proportion="0.49646643">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20121025003332_remove_preco_venda_produto.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="10" selection-start="75" selection-end="75" vertical-scroll-proportion="0.05514706">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/initializers/inflections.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="67" selection-start="699" selection-end="699" vertical-scroll-proportion="0.3529412">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/tipos_produto.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="6480" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="51" selection-start="524" selection-end="524" vertical-scroll-proportion="-8.125">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/tipos_produto_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="706" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/routes.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="28" selection-start="1290" selection-end="1290" vertical-scroll-proportion="0.89915967">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20121024001526_add_admin_to_users.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="5" selection-start="50" selection-end="125" vertical-scroll-proportion="0.075630255">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/migrate/20121012190619_create_produtos.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="26" selection-start="198" selection-end="209" vertical-scroll-proportion="0.15126051">
@@ -749,13 +718,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20121025155812_add_quantidade_produto.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="62" selection-start="128" selection-end="128" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/produtos.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="455" column="42" selection-start="15304" selection-end="15304" vertical-scroll-proportion="0.3298969">
@@ -763,16 +725,79 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/movimentacoes_estoque_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/vendas.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="47" selection-start="514" selection-end="514" vertical-scroll-proportion="0.0">
+        <state line="17" column="112" selection-start="417" selection-end="417" vertical-scroll-proportion="0.44658494">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/movimentacoes_estoque.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="234" column="24" selection-start="8447" selection-end="8447" vertical-scroll-proportion="6.0309277">
+        <state line="115" column="26" selection-start="3644" selection-end="3644" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../superbynet/app/assets/javascripts/criar-lista-compra.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="106" selection-start="291" selection-end="291" vertical-scroll-proportion="0.23195876">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/initializers/inflections.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="32" selection-start="733" selection-end="733" vertical-scroll-proportion="0.37815127">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/movimentacoes_estoque_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="9" selection-start="582" selection-end="662" vertical-scroll-proportion="0.3041237">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../superbynet/app/assets/javascripts/lista-compras.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="95" column="7" selection-start="1808" selection-end="2740" vertical-scroll-proportion="0.82474226">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/routes.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="19" selection-start="173" selection-end="173" vertical-scroll-proportion="0.1764706">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20121025155812_add_quantidade_produto.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="5" selection-start="55" selection-end="134" vertical-scroll-proportion="0.07853403">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20121026003012_add_desconto_to_venda.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="41" selection-start="105" selection-end="105" vertical-scroll-proportion="0.05042017">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/vendas.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="89" column="62" selection-start="2670" selection-end="2670" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/vendas_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="52" selection-start="321" selection-end="321" vertical-scroll-proportion="0.3277311">
           <folding />
         </state>
       </provider>

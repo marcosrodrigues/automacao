@@ -93,81 +93,6 @@ function inclusaoMovimentacaoEstoque() {
     }).show();
 }
 
-function edicaoMovimentacaoEstoque(id, produto_id, operacao, quantidade){
-    Ext.create('Ext.Window', {
-        id: 'dadosMovimentacaoEstoque',
-        title: 'Dados',
-        width: 290,
-        height: 145,
-        modal: true,
-        resizable: false,
-        items: {
-            xtype: 'panel',
-            items: [{
-                xtype: 'combobox',
-                id: 'produto',
-                store: storeProduto,
-                displayField: 'descricao',
-                valueField: 'id',
-                fieldLabel: 'Produto',
-                emptyText: 'Selecione um Produto',
-                width: 270,
-                value: produto_id
-            },{
-                xtype: 'combobox',
-                id: 'operacao',
-                displayField: 'descricao',
-                valueField: 'id',
-                fieldLabel: 'Operação',
-                emptyText: 'Selecione uma Operação',
-                width: 270,
-                value: operacao,
-                store: Ext.create('Ext.data.Store', {
-                    fields: ['id', 'descricao'],
-                    data: [
-                        {id: 1, descricao: 'Entrada'},
-                        {id: 2, descricao: 'Saída'}
-                    ]
-                })
-            },{
-                xtype: 'numberfield',
-                id: 'quantidade',
-                fieldLabel: 'Quantidade',
-                hideTrigger: true,
-                allowDecimals: false,
-                width: 150,
-                value: quantidade
-            }],
-            buttons: [{
-                text: 'Salvar',
-                iconCls: 'icon-save',
-                handler: function(){
-                    Ext.Ajax.request({
-                        url: 'movimentacoes_estoque/alterar',
-                        method: 'put',
-                        params: {
-                            id: id,
-                            produto_id: Ext.getCmp('produto').value,
-                            operacao: Ext.getCmp('operacao').value,
-                            quantidade: Ext.getCmp('quantidade').value
-                        },
-                        success: function(){
-                            Ext.getCmp('dadosMovimentacaoEstoque').close();
-                            storeMovimentacaoEstoque.load();
-                        }
-                    });
-                }
-            },{
-                text: 'Cancelar',
-                iconCls: 'icon-cancel',
-                handler: function(){
-                    Ext.getCmp('dadosMovimentacaoEstoque').close();
-                }
-            }]
-        }
-    }).show();
-}
-
 function abrirMovimentacoesEstoque() {
     var cadastro = Ext.getCmp('movimentacoesEstoque');
     if (cadastro) {
@@ -189,49 +114,6 @@ function abrirMovimentacoesEstoque() {
                 stateful: true,
                 stateId: 'stateGrid',
                 columns: [{
-                    xtype: 'actioncolumn',
-                    width: 25,
-                    items: [{
-                        icon: '/assets/icons/fam/delete.gif',
-                        tooltip: 'Excluir Movimentação de Estoque',
-                        handler: function(grid, rowIndex, colIndex) {
-                            Ext.Msg.show({
-                                title: 'Confirmação',
-                                msg: 'Deseja excluir esta movimentação de estoque?',
-                                buttons: Ext.Msg.YESNO,
-                                icon: Ext.Msg.QUESTION,
-                                fn: function(btn){
-                                    if (btn == 'yes') {
-                                        var rec = storeMovimentacaoEstoque.getAt(rowIndex);
-
-                                        Ext.Ajax.request({
-                                            url: 'movimentacoes_estoque/excluir',
-                                            method: 'delete',
-                                            params: {
-                                                id: rec.get('id')
-                                            },
-                                            success: function(){
-                                                storeMovimentacaoEstoque.load();
-                                            }
-                                        });
-                                    }
-                                }
-                            });
-                        }
-                    }]
-                },{
-                    xtype: 'actioncolumn',
-                    width: 25,
-                    items: [{
-                        icon: '/assets/icons/fam/edit.png',
-                        tooltip: 'Editar Movimentação de Estoque',
-                        handler: function(grid, rowIndex, colIndex) {
-                            var rec = storeMovimentacaoEstoque.getAt(rowIndex);
-
-                            edicaoMovimentacaoEstoque(rec.get('id'), rec.get('produto_id'), rec.get('operacao'), rec.get('quantidade'));
-                        }
-                    }]
-                },{
                     text     : 'Produto',
                     flex     : 1,
                     dataIndex: 'produto'
