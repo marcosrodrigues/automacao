@@ -1,0 +1,33 @@
+* {
+  margin: 10px;
+  padding: 0;
+}
+
+body {
+  background-color: #B0C9CF;
+}
+
+h2 {
+  font: 20px Arial, "MS Trebuchet", sans-serif;
+  color: #5F82CE;
+}
+
+label {
+  color: #3E33B4;
+}
+
+input {
+  font: 15px Arial, "MS Trebuchet", sans-serif;
+  padding: 10px;
+  width: 400px;
+}
+
+input[type=submit] {
+  width: 100px;
+  height: 60px;
+  font: 20px Arial, "MS Trebuchet", sans-serif;
+}
+
+a {
+  font: 15px Arial, "MS Trebuchet", sans-serif;
+}
