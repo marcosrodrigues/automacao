@@ -11,7 +11,7 @@ class ProdutosController < ApplicationController
   end
 
   def lista
-    produtos = Produto.all.map do |p|
+    produtos = Produto.limit(params[:limit]).offset(params[:start]).map do |p|
       {
           :id => p.id,
           :descricao => p.descricao,
@@ -23,7 +23,7 @@ class ProdutosController < ApplicationController
     end
     respond_to do |format|
       format.json {
-        render :json => produtos
+        render :json => {:list => produtos, :count => Produto.count}
       }
     end
   end
@@ -35,7 +35,7 @@ class ProdutosController < ApplicationController
     else
       produtos = Produto.all
     end
-    list = produtos.map { |p| Hash[id: p.id, label: p.descricao, name: p.descricao] }
+    list = produtos.limit(15).map { |p| Hash[id: p.id, label: p.descricao, name: p.descricao] }
     render json: list
   end
 

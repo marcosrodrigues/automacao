@@ -13,12 +13,14 @@ Ext.define('Produto', {
 // create the data store
 var storeProduto = Ext.create('Ext.data.Store', {
     model: 'Produto',
+    pageSize: 20,
     proxy: {
         type: 'ajax',
         url: 'produtos/lista',
         reader: {
             type: 'json',
-            root: 'json'
+            root: 'list',
+            totalProperty: 'count'
         }
     },
     autoLoad: false
@@ -366,7 +368,7 @@ function abrirCadastroProdutos() {
         Ext.create('Ext.Window', {
             title: 'Produtos',
             width: 800,
-            height: 500,
+            height: 532,
             plain: true,
             layout: 'fit',
             id: 'gridProdutos',
@@ -456,7 +458,7 @@ function abrirCadastroProdutos() {
                     dataIndex: 'quantidade'
                 }],
                 width: 800,
-                height: 500,
+                height: 532,
                 viewConfig: {
                     stripeRows: true
                 },
@@ -469,7 +471,13 @@ function abrirCadastroProdutos() {
                             inclusaoProdutos();
                         }
                     }]
-                }]
+                }],
+                bbar: Ext.create('Ext.PagingToolbar', {
+                    store: storeProduto,
+                    displayInfo: true,
+                    displayMsg: 'Mostrando {0} - {1} de {2}',
+                    emptyMsg: "No topics to display"
+                })
             }
         }).show();
     }
