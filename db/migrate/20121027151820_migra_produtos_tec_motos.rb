@@ -3907,7 +3907,8 @@ class MigraProdutosTecMotos < ActiveRecord::Migration
 
   def down
     if Empresa.first.sigla == 'TEC'
-
+      Produto.delete_all
+      TipoProduto.first.detroy
     end
   end
 end

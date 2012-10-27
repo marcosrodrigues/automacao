@@ -12,6 +12,7 @@
   <%= javascript_include_tag "contas_pagar" %>
   <%= javascript_include_tag "contas_receber" %>
   <%= javascript_include_tag "movimentacoes_estoque" %>
+  <%= javascript_include_tag "servicos" %>
   <%= csrf_meta_tags %>
 
   <style type="text/css">
@@ -93,6 +94,12 @@
                           icon: '/assets/icons/fam/products.png',
                           handler: function(){
                               abrirCadastroProdutos();
+                          }
+                      },{
+                          text: 'Serviços',
+                          icon: '/assets/icons/fam/folder_wrench.png',
+                          handler: function(){
+                              abrirCadastroServicos();
                           }
                       }]
                   })
