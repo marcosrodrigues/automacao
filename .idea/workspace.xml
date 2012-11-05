@@ -2,18 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3dee204-0eb4-4b7c-80f9-1c38228b4e37" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/automacao.iml" afterPath="$PROJECT_DIR$/.idea/automacao.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/vendas.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/vendas.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/vendas_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/vendas_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/venda.rb" afterPath="$PROJECT_DIR$/app/models/venda.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/vendas.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/vendas.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/vendas/index.html.erb" afterPath="$PROJECT_DIR$/app/views/vendas/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/application.rb" afterPath="$PROJECT_DIR$/config/application.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/mime_types.rb" afterPath="$PROJECT_DIR$/config/initializers/mime_types.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
     </list>
     <ignored path="automacao.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,10 +32,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vendas.html.erb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="vendas.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/layouts/vendas.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="0" selection-start="284" selection-end="284" vertical-scroll-proportion="0.27322406">
+            <state line="10" column="0" selection-start="284" selection-end="284" vertical-scroll-proportion="-6.25">
               <folding />
             </state>
           </provider>
@@ -62,10 +53,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vendas.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="vendas.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/vendas.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="108" column="55" selection-start="3116" selection-end="3116" vertical-scroll-proportion="0.0">
+            <state line="102" column="8" selection-start="2881" selection-end="2881" vertical-scroll-proportion="0.16964285">
               <folding />
             </state>
           </provider>
@@ -74,8 +65,13 @@
       <file leaf-file-name="vendas_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/vendas_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="32" selection-start="864" selection-end="864" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="25" column="4" selection-start="517" selection-end="517" vertical-scroll-proportion="0.0">
+              <folding>
+                <marker date="1352158568000" expanded="true" signature="517:675" placeholder="#..." />
+                <marker date="1352158568000" expanded="true" signature="766:806" placeholder="do ... end" />
+                <marker date="1352158568000" expanded="true" signature="829:896" placeholder="do ... end" />
+                <marker date="1352158568000" expanded="true" signature="860:887" placeholder="{ ... }" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -118,9 +114,9 @@
         <option value="$PROJECT_DIR$/app/models/venda.rb" />
         <option value="$PROJECT_DIR$/app/reports/vendas_report.rb" />
         <option value="$PROJECT_DIR$/app/views/vendas/index.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/layouts/vendas.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/vendas_controller.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/vendas.js" />
-        <option value="$PROJECT_DIR$/app/views/layouts/vendas.html.erb" />
       </list>
     </option>
   </component>
@@ -786,20 +782,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../superbynet/app/controllers/produtos_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="112" selection-start="576" selection-end="576" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/vendas_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="32" selection-start="864" selection-end="864" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/vendas/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="50" column="42" selection-start="1342" selection-end="1342" vertical-scroll-proportion="-19.416666">
@@ -810,6 +792,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/vendas.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="284" selection-end="284" vertical-scroll-proportion="-6.25">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/reports/vendas_report.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="7" selection-start="217" selection-end="217" vertical-scroll-proportion="0.0">
@@ -817,16 +806,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/vendas.js">
+    <entry file="file://$PROJECT_DIR$/../superbynet/app/controllers/produtos_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="108" column="55" selection-start="3116" selection-end="3116" vertical-scroll-proportion="0.0">
+        <state line="15" column="112" selection-start="576" selection-end="576" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/vendas.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/vendas_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="284" selection-end="284" vertical-scroll-proportion="0.27322406">
+        <state line="25" column="4" selection-start="517" selection-end="517" vertical-scroll-proportion="0.0">
+          <folding>
+            <marker date="1352158568000" expanded="true" signature="517:675" placeholder="#..." />
+            <marker date="1352158568000" expanded="true" signature="766:806" placeholder="do ... end" />
+            <marker date="1352158568000" expanded="true" signature="829:896" placeholder="do ... end" />
+            <marker date="1352158568000" expanded="true" signature="860:887" placeholder="{ ... }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/vendas.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="102" column="8" selection-start="2881" selection-end="2881" vertical-scroll-proportion="0.16964285">
           <folding />
         </state>
       </provider>

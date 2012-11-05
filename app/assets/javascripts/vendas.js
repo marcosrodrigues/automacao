@@ -100,7 +100,9 @@ $(function(){
 
     shortcut.add('F4', function(){
 
-        var id = Math.floor((Math.random()*10)+1);
+
+
+        /*var id = Math.floor((Math.random()*10)+1);
 
         $.ajax({
             type: "GET",
@@ -121,6 +123,6 @@ $(function(){
                     width: 740
                 });
             }
-        });
+        });*/
     });
 });
