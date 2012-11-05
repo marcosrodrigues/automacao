@@ -6,6 +6,7 @@ Automacao::Application.routes.draw do
   # Venda
   get "vendas/index"
   post "vendas/fechar"
+  get "vendas/report"
 
   get "home/index"
 

@@ -97,4 +97,30 @@ $(function(){
     vendas = new VendasModel();
 
     ko.applyBindings(vendas);
+
+    shortcut.add('F4', function(){
+
+        var id = Math.floor((Math.random()*10)+1);
+
+        $.ajax({
+            type: "GET",
+            url: "/vendas/report?id=" + id,
+            success: function(response) {
+                $("a.media").attr("href", "/recibo"+ id +".pdf");
+
+                $("a.media").media({
+                    height:500,
+                    width:700
+                });
+
+                $('#recibo').dialog({
+                    title: 'Recibo',
+                    modal: true,
+                    resizable: false,
+                    height: 570,
+                    width: 740
+                });
+            }
+        });
+    });
 });
