@@ -20,15 +20,21 @@ class VendasController < ApplicationController
     end
   end
 
-  def report
-    output = VendasReport.new.recibo_to_pdf(Venda.last)
+  def recibo
+    @venda = Venda.last
 
-    respond_to do |format|
-      format.pdf do
-        send_data output, :filename => "recibo.pdf",
-                  :type => "application/pdf"
-      end
-    end
+    render :layout => "report"
+  end
+
+  def report
+    #output = VendasReport.new.recibo_to_pdf(Venda.last)
+    #
+    #respond_to do |format|
+    #  format.pdf do
+    #    send_data output, :filename => "recibo.pdf",
+    #              :type => "application/pdf"
+    #  end
+    #end
 
     #file_name = "public/recibo" + params[:id] + ".pdf"
     #

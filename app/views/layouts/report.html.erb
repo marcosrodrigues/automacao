@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Automação - Relatório</title>
+  <%= javascript_include_tag "jquery" %>
+  <%= javascript_include_tag "shortcut" %>
+  <%= javascript_include_tag "jquery.printElement.min" %>
+  <%= javascript_include_tag "report" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<a href="#" id="imprimir">Imprimir (F9)</a>
+
+<div id="report">
+  <%= yield %>
+</div>
+
+</body>
+</html>

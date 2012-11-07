@@ -1,0 +1,5 @@
+<ul>
+  <% @venda.item_venda.each do |v| %>
+    <li><%= v.produto.descricao %></li>
+  <% end %>
+</ul>

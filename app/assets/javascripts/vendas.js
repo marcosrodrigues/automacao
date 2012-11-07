@@ -100,7 +100,7 @@ $(function(){
 
     shortcut.add('F4', function(){
 
-
+        window.open('/vendas/recibo');
 
         /*var id = Math.floor((Math.random()*10)+1);
 
