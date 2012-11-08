@@ -11,7 +11,8 @@ class VendasController < ApplicationController
     itens.each do |i|
       item_venda = ItemVenda.new
       item_venda.venda = venda
-      item_venda.produto = Produto.find(i[1].first[1])
+      item_venda.produto = Produto.find(i[1]["id"])
+      item_venda.quantidade = i[1]["quantidade"]
       item_venda.save
     end
 

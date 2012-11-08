@@ -39,11 +39,16 @@ input {
   text-align: right;
 }
 
+.quantidade {
+  width: 95px;
+}
+
 #content {
   width: 80%;
   float: left;
   font: 16px Arial, "MS Trebuchet", sans-serif;
   background-color: #f1f1f1;
+  overflow: hidden;
 }
 
 #content #grid {

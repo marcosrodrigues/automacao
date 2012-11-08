@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3dee204-0eb4-4b7c-80f9-1c38228b4e37" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/report.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/layouts/report.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/vendas/recibo.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/vendas.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/vendas.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/vendas.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/vendas.css.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/vendas_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/vendas_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/vendas.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/vendas.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/vendas/index.html.erb" afterPath="$PROJECT_DIR$/app/views/vendas/index.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/vendas/recibo.html.erb" afterPath="$PROJECT_DIR$/app/views/vendas/recibo.html.erb" />
     </list>
     <ignored path="automacao.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,37 +26,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/vendas/index.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="72" selection-start="834" selection-end="844" vertical-scroll-proportion="-8.125">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="vendas.css.scss" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/vendas.css.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="50" column="19" selection-start="707" selection-end="707" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="vendas.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/vendas.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="7" selection-start="609" selection-end="679" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="vendas_controller.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/vendas_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="23" selection-start="479" selection-end="479" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="report.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/layouts/report.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="15" selection-start="352" selection-end="352" vertical-scroll-proportion="-8.75">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="report.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/report.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="16" selection-start="273" selection-end="273" vertical-scroll-proportion="0.37815127">
+            <state line="74" column="74" selection-start="2285" selection-end="2285" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -67,7 +56,16 @@
       <file leaf-file-name="recibo.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/vendas/recibo.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="31" selection-start="74" selection-end="74" vertical-scroll-proportion="-1.25">
+            <state line="8" column="26" selection-start="183" selection-end="183" vertical-scroll-proportion="-5.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="vendas_controller.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/vendas_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="31" selection-start="352" selection-end="352" vertical-scroll-proportion="0.3529412">
               <folding />
             </state>
           </provider>
@@ -89,7 +87,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/config/environment.rb" />
         <option value="$PROJECT_DIR$/config/application.rb" />
         <option value="$PROJECT_DIR$/config/initializers/mime_types.rb" />
@@ -97,14 +94,15 @@
         <option value="$PROJECT_DIR$/app/reports/hello_report.rb" />
         <option value="$PROJECT_DIR$/app/models/venda.rb" />
         <option value="$PROJECT_DIR$/app/reports/vendas_report.rb" />
-        <option value="$PROJECT_DIR$/app/views/vendas/index.html.erb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/vendas.js" />
         <option value="$PROJECT_DIR$/app/views/layouts/vendas.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/vendas_controller.rb" />
-        <option value="$PROJECT_DIR$/app/views/vendas/recibo.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/report.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/report.js" />
+        <option value="$PROJECT_DIR$/app/views/vendas/index.html.erb" />
+        <option value="$PROJECT_DIR$/app/assets/stylesheets/vendas.css.scss" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/vendas.js" />
+        <option value="$PROJECT_DIR$/app/views/vendas/recibo.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/vendas_controller.rb" />
       </list>
     </option>
   </component>
@@ -256,46 +254,6 @@
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layouts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="automacao" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="automacao" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="reports" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="automacao" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="automacao" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -332,6 +290,10 @@
               <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="stylesheets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -352,6 +314,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="javascripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="automacao" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="automacao" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -699,19 +679,9 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../superbynet/app/models/fabricante.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="106" selection-start="99" selection-end="99" vertical-scroll-proportion="0.13089006" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/venda.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="16" selection-start="71" selection-end="71" vertical-scroll-proportion="0.05235602" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/vendas/index.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="42" selection-start="1342" selection-end="1342" vertical-scroll-proportion="-19.416666" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/reports/vendas_report.rb">
@@ -758,37 +728,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/vendas_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/report.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="23" selection-start="479" selection-end="479" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/vendas/recibo.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="31" selection-start="74" selection-end="74" vertical-scroll-proportion="-1.25">
+        <state line="15" column="16" selection-start="273" selection-end="273" vertical-scroll-proportion="0.37815127">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/report.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="15" selection-start="352" selection-end="352" vertical-scroll-proportion="-8.75">
+        <state line="14" column="15" selection-start="352" selection-end="352" vertical-scroll-proportion="0.36777583">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/vendas/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="72" selection-start="834" selection-end="844" vertical-scroll-proportion="-8.125">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/vendas.css.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="19" selection-start="707" selection-end="707" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/vendas.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="7" selection-start="609" selection-end="679" vertical-scroll-proportion="0.0">
+        <state line="74" column="74" selection-start="2285" selection-end="2285" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/report.js">
+    <entry file="file://$PROJECT_DIR$/app/views/vendas/recibo.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="16" selection-start="273" selection-end="273" vertical-scroll-proportion="0.37815127">
+        <state line="8" column="26" selection-start="183" selection-end="183" vertical-scroll-proportion="-5.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/vendas_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="31" selection-start="352" selection-end="352" vertical-scroll-proportion="0.3529412">
           <folding />
         </state>
       </provider>

@@ -72,7 +72,7 @@ $(function(){
         $('#content').css('height', (heightLeftAndContent - heightHeader) + 'px');
         $('#content').css('width', widthContent + 'px');
 
-        $('#grid').css('height', heightLeftAndContent + 'px');
+        $('#grid').css('height', (heightLeftAndContent - heightHeader - 20) + 'px');
         $('#grid').css('width', widthContent + 'px');
 
         $('#footer').css('height', heightFooter + 'px');
@@ -88,9 +88,17 @@ $(function(){
         source: '/produtos/pesquisa',
         select: function(event, ui) {
             vendas.produtos.push(new ProdutoModel(ui.item.id, ui.item.label));
+
+            $(".quantidade").last().focus();
         },
         close: function() {
             $('#pesquisa').val('');
+        }
+    });
+
+    $(".quantidade").live("keypress", function(event) {
+        if ( event.which == 13 ) {
+            $('#pesquisa').focus();
         }
     });
 

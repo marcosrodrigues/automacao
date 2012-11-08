@@ -1,5 +1,12 @@
-<ul>
+<table>
+  <tr>
+    <th>Produto</th>
+    <th>Quantidade</th>
+  </tr>
   <% @venda.item_venda.each do |v| %>
-    <li><%= v.produto.descricao %></li>
+    <tr>
+      <td><%= v.produto.descricao %></td>
+      <td><%= v.quantidade %></td>
+    </tr>
   <% end %>
-</ul>
+</table>

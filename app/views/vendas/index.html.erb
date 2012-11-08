@@ -26,7 +26,7 @@
         <tbody data-bind="foreach: produtos">
             <tr>
               <td width="60%" data-bind="text: nome"></td>
-              <td width="10%" align="right" data-bind="text: quantidade"></td>
+              <td width="10%" align="right"><input type="number" class="quantidade" data-bind="value: quantidade" /></td>
               <td align="right" data-bind="text: preco"></td>
               <td align="right" data-bind="text: total">10,00</td>
             </tr>
