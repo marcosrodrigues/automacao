@@ -9,7 +9,7 @@ function ProdutoModel(id, nome){
     }, this);
 }
 
-function VendasModel(){
+function VendaModel(){
     this.desconto = ko.observable(0);
     this.produtos = ko.observableArray([]);
 
@@ -18,6 +18,10 @@ function VendasModel(){
             return acumulador + item.total();
         }, 0).toFixed(2);
     }, this);
+}
+
+function VendasModel(){
+    this.vendas = ko.observableArray([]);
 }
 
 var vendas;
@@ -29,6 +33,10 @@ $(function(){
     });
 
     shortcut.add('F3', function(){
+        $("#footer #info").text("FECHANDO VENDA");
+
+        var fechada = false;
+
         $( '#fechar-venda' ).dialog({
             title: 'Fechar Venda',
             modal: true,
@@ -50,7 +58,15 @@ $(function(){
                             $('#fechar-venda').dialog('close');
                         }
                     });
+
+                    fechada = true;
                 }
+            },
+            close: function(){
+                if (fechada)
+                    $("#footer #info").text("VENDA FECHADA");
+                else
+                    $("#footer #info").text("VENDA");
             }
         });
     });
@@ -102,7 +118,7 @@ $(function(){
         }
     });
 
-    vendas = new VendasModel();
+    vendas = new VendaModel();
 
     ko.applyBindings(vendas);
 

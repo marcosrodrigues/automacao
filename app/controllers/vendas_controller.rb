@@ -2,6 +2,14 @@ class VendasController < ApplicationController
   def index
   end
 
+  def adiciona_item_venda
+
+  end
+
+  def vendas_em_aberto
+
+  end
+
   def fechar
     venda = Venda.new
     venda.desconto = params[:desconto]
