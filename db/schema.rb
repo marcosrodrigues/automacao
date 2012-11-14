@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121027190850) do
+ActiveRecord::Schema.define(:version => 20121114010124) do
 
   create_table "clientes", :force => true do |t|
     t.string   "nome"
@@ -131,9 +131,10 @@ ActiveRecord::Schema.define(:version => 20121027190850) do
 
   create_table "vendas", :force => true do |t|
     t.integer  "cliente_id"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.float    "desconto",   :default => 0.0
+    t.boolean  "fechada",    :default => false
   end
 
   add_index "vendas", ["cliente_id"], :name => "index_vendas_on_cliente_id"
