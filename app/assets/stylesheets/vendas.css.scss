@@ -14,8 +14,8 @@ body {
   text-align: center;
 }
 
-#pesquisa {
-  width: 500px;
+.pesquisa {
+  width: 40%;
   text-align: center;
 }
 
@@ -23,6 +23,16 @@ body {
   width: 20%;
   float: left;
   background-color: #f9f9f9;
+}
+
+#left #atalhos {
+  margin-left: 10px;
+  margin-top: 20px;
+  font: 13px Arial, "MS Trebuchet", sans-serif;
+}
+
+#left #atalhos h3 {
+  margin: 5px;
 }
 
 #left .field {
@@ -51,7 +61,7 @@ input {
   overflow: hidden;
 }
 
-#content #grid {
+#content .grid {
   overflow-y: scroll;
 }
 #content table {
@@ -60,18 +70,21 @@ input {
 #content table thead {
   background-color: #bfd2e6;
 }
-#content #grid thead tr {
+#content .grid thead tr {
   height: 20px;
 }
-#content #grid tbody tr {
+#content .grid tbody tr {
   height: 30px;
   border: 1px solid #D0DEF0;
 }
 
 #footer {
-  padding-top: 10px;
   text-align: center;
   width: 100%;
   float: left;
   background-color: #f9f9f9;
+}
+
+#footer #info {
+  font: 42px Arial, "MS Trebuchet", sans-serif;
 }
