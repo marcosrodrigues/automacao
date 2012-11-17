@@ -1,12 +1,12 @@
 <div id="header">
-    <input type="text" id="pesquisa" placeholder="F2" autofocus="true" />
+    <input type="text" id="pesquisa" autofocus="true" />
 </div>
 
 <div id="left">
     <div class="field">
         <label>Total</label>
         <br/>
-        <input type="text" data-bind="value: total" />
+        <input type="text" data-bind="value: vendaAtiva.total" />
     </div>
 </div>
 
@@ -23,7 +23,7 @@
     </table>
     <div id="grid">
       <table width="100%">
-        <tbody data-bind="foreach: produtos">
+        <tbody data-bind="foreach: vendaAtiva.produtos">
             <tr>
               <td width="60%" data-bind="text: nome"></td>
               <td width="10%" align="right"><input type="number" class="quantidade" data-bind="value: quantidade" /></td>
@@ -36,17 +36,36 @@
 </div>
 
 <div id="footer">
-    <h1 id="info">VENDA</h1>
+    <h1 id="info">LIVRE</h1>
 </div>
 
 <div id="fechar-venda" style="display: none">
     <div class="field">
         <label>Desconto</label>
         <br/>
-        <input type="text" data-bind="value: desconto" />
+        <input type="text" data-bind="value: vendaAtiva.desconto" />
     </div>
 </div>
 
 <div id="recibo" style="display: none;">
   <a class="media" href="/recibo.pdf"></a>
+</div>
+
+<div id="vendas-abertas" style="display: none">
+  <table width="100%">
+      <thead>
+          <tr>
+            <th align="center">Id</th>
+          </tr>
+      </thead>
+  </table>
+  <div id="grid">
+    <table width="100%">
+      <tbody data-bind="foreach: vendas">
+          <tr>
+            <td align="right" data-bind="text: id"></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>   
 </div>

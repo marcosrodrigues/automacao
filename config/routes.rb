@@ -5,9 +5,12 @@ Automacao::Application.routes.draw do
 
   # Venda
   get "vendas/index"
+  get "vendas/nova_venda"
   post "vendas/fechar"
+  post "vendas/adiciona_item_venda"
   get "vendas/report"
   get "vendas/recibo"
+  get "vendas/vendas_em_aberto"
 
   get "home/index"
 

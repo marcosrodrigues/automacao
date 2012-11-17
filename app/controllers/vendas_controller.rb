@@ -1,36 +1,49 @@
 class VendasController < ApplicationController
   def index
+  
+  end
+
+  def nova_venda
+    venda = Venda.create
+
+    respond_to do |format|
+      format.json { render :json => venda.id}
+    end  
   end
 
   def adiciona_item_venda
+    item_venda = ItemVenda.new
+    item_venda.venda = Venda.find(params[:id])
+    item_venda.produto = Produto.find(params[:id_produto])
+    item_venda.quantidade = params[:quantidade]
 
+    if item_venda.save
+      respond_to do |format|
+        format.json { render :json => :success}
+      end
+    end
   end
 
   def vendas_em_aberto
-
+    respond_to do |format|
+      format.json { render :json => Venda.find_all_by_fechada(false)}
+    end
   end
 
   def fechar
-    venda = Venda.new
+    venda = Venda.find(params[:id])
     venda.desconto = params[:desconto]
-    venda.save
-
-    itens = params[:itens]
-    itens.each do |i|
-      item_venda = ItemVenda.new
-      item_venda.venda = venda
-      item_venda.produto = Produto.find(i[1]["id"])
-      item_venda.quantidade = i[1]["quantidade"]
-      item_venda.save
-    end
-
-    respond_to do |format|
-      format.json { render :json => :success}
+    venda.fechada = true
+    
+    if venda.save 
+      respond_to do |format|
+        format.json { render :json => :success}
+      end
     end
   end
 
   def recibo
-    @venda = Venda.last
+    @venda = Venda.find(params[:id])
 
     render :layout => "report"
   end

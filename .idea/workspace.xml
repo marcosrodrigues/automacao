@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a3dee204-0eb4-4b7c-80f9-1c38228b4e37" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/vendas.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/vendas.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/vendas_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/vendas_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/vendas/index.html.erb" afterPath="$PROJECT_DIR$/app/views/vendas/index.html.erb" />
-    </list>
+    <list default="true" id="a3dee204-0eb4-4b7c-80f9-1c38228b4e37" name="Default" comment="" />
     <ignored path="automacao.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -47,7 +42,7 @@
       <file leaf-file-name="vendas.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/vendas.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="68" column="20" selection-start="1957" selection-end="1957" vertical-scroll-proportion="0.92783505">
+            <state line="35" column="8" selection-start="792" selection-end="792" vertical-scroll-proportion="0.077319585">
               <folding />
             </state>
           </provider>
@@ -791,7 +786,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/vendas.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="20" selection-start="1957" selection-end="1957" vertical-scroll-proportion="0.92783505">
+        <state line="35" column="8" selection-start="792" selection-end="792" vertical-scroll-proportion="0.077319585">
           <folding />
         </state>
       </provider>
