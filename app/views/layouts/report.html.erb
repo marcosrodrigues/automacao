@@ -2,6 +2,8 @@
 <html>
 <head>
   <title>Automação - Relatório</title>
+  <%= stylesheet_link_tag "report" %>
+
   <%= javascript_include_tag "jquery" %>
   <%= javascript_include_tag "shortcut" %>
   <%= javascript_include_tag "jquery.printElement.min" %>
@@ -12,7 +14,7 @@
 
 <a href="#" id="imprimir">Imprimir (F9)</a>
 
-<div id="report">
+<div id="report" style="padding: 20px;">
   <%= yield %>
 </div>
 

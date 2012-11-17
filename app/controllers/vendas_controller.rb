@@ -43,6 +43,7 @@ class VendasController < ApplicationController
   end
 
   def recibo
+    @empresa = Empresa.first
     @venda = Venda.find(params[:id])
 
     render :layout => "report"

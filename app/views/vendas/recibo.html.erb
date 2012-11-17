@@ -1,12 +1,37 @@
-<table>
-  <tr>
-    <th>Produto</th>
-    <th>Quantidade</th>
-  </tr>
-  <% @venda.item_venda.each do |v| %>
+<%= @empresa.razao_social %><br/>
+<label>CNPJ: </label><%= @empresa.cnpj %><br/>
+<br/>
+<label>Cliente:</label><br/>
+<label>Desconto:</label> <%= @venda.desconto %><br/>
+<br/>
+<fieldset style="width: 800px;">
+  <legend style="margin-left: 10px;">Produtos</legend>
+  <table style="width: 800px">
     <tr>
-      <td><%= v.produto.descricao %></td>
-      <td><%= v.quantidade %></td>
+      <th width="700px">Produto</th>
+      <th width="100px">Quantidade</th>
     </tr>
-  <% end %>
-</table>
+    <% @venda.item_venda.each do |v| %>
+      <tr>
+        <td><%= v.produto.descricao %></td>
+        <td align="right"><%= v.quantidade %></td>
+      </tr>
+    <% end %>
+  </table>
+</fieldset>
+<br/>
+<fieldset style="width: 800px;">
+  <legend style="margin-left: 10px;">Serviços</legend>
+  <table style="width: 800px">
+    <tr>
+      <th width="700px">Serviço</th>
+      <th width="100px">Quantidade</th>
+    </tr>
+    <% @venda.item_venda.each do |v| %>
+      <tr>
+        <td><%= v.produto.descricao %></td>
+        <td align="right"><%= v.quantidade %></td>
+      </tr>
+    <% end %>
+  </table>
+</fieldset>
