@@ -58,6 +58,9 @@ function inclusaoContaReceber() {
                 handler: function(){
                     Ext.Ajax.request({
                         url: 'contas_receber/salvar',
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
                         params: {
                             cliente_id: Ext.getCmp('cliente').value,
                             vencimento: Ext.getCmp('vencimento').value,
@@ -119,6 +122,9 @@ function edicaoContaReceber(id, cliente_id, vencimento, valor){
                 handler: function(){
                     Ext.Ajax.request({
                         url: 'contas_receber/alterar',
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
                         method: 'put',
                         params: {
                             id: id,

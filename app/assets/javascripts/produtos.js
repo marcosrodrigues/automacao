@@ -62,6 +62,9 @@ function inclusaoProdutos() {
                 handler: function(){
                     Ext.Ajax.request({
                         url: 'produtos/salvar',
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
                         params: {
                             descricao: Ext.getCmp('txtDescricao').value,
                             codigo_barras: Ext.getCmp('txtCodigoBarras').value,
@@ -123,6 +126,9 @@ function edicaoProduto(id, descricao, codigo_barras, tipo_produto_id){
                 handler: function(){
                     Ext.Ajax.request({
                         url: 'produtos/alterar',
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
                         method: 'put',
                         params: {
                             id: id,

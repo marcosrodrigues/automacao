@@ -49,6 +49,9 @@ function inclusaoFornecedor() {
                 handler: function(){
                     Ext.Ajax.request({
                         url: 'fornecedores/salvar',
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
                         params: {
                             nome: Ext.getCmp('nome').value,
                             telefone: Ext.getCmp('telefone').value
@@ -100,6 +103,9 @@ function edicaoFornecedor(id, nome, telefone){
                 handler: function(){
                     Ext.Ajax.request({
                         url: 'fornecedores/alterar',
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
                         method: 'put',
                         params: {
                             id: id,

@@ -71,6 +71,9 @@ function inclusaoMovimentacaoEstoque() {
                 handler: function(){
                     Ext.Ajax.request({
                         url: 'movimentacoes_estoque/salvar',
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
                         params: {
                             produto_id: Ext.getCmp('produto').value,
                             operacao: Ext.getCmp('operacao').value,

@@ -58,6 +58,9 @@ function inclusaoContaPagar() {
                 handler: function(){
                     Ext.Ajax.request({
                         url: 'contas_pagar/salvar',
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
                         params: {
                             fornecedor_id: Ext.getCmp('fornecedor').value,
                             vencimento: Ext.getCmp('vencimento').value,
@@ -119,6 +122,9 @@ function edicaoContaPagar(id, fornecedor_id, vencimento, valor){
                 handler: function(){
                     Ext.Ajax.request({
                         url: 'contas_pagar/alterar',
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
                         method: 'put',
                         params: {
                             id: id,

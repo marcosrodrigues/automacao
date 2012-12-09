@@ -42,6 +42,9 @@ function inclusaoTiposProduto() {
                 handler: function(){
                     Ext.Ajax.request({
                         url: 'tipos_produto/salvar',
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
                         params: {
                             descricao: Ext.getCmp('txtDescricao').value
                         },
@@ -85,6 +88,9 @@ function edicaoTiposProduto(id, descricao){
                 handler: function(){
                     Ext.Ajax.request({
                         url: 'tipos_produto/alterar',
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
                         method: 'put',
                         params: {
                             id: id,

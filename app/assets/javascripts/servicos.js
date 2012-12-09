@@ -42,6 +42,9 @@ function inclusaoServico() {
                 handler: function(){
                     Ext.Ajax.request({
                         url: 'servicos/salvar',
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
                         params: {
                             descricao: Ext.getCmp('txtDescricao').value
                         },
@@ -85,6 +88,9 @@ function edicaoServico(id, descricao){
                 handler: function(){
                     Ext.Ajax.request({
                         url: 'servicos/alterar',
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
                         method: 'put',
                         params: {
                             id: id,
