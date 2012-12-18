@@ -11,7 +11,7 @@ class ProdutosController < ApplicationController
   end
 
   def lista
-    produtos = Produto.limit(params[:limit]).offset(params[:start]).map do |p|
+    produtos = Produto.limit(params[:limit]).offset(params[:start]).order(:descricao).map do |p|
       {
           :id => p.id,
           :descricao => p.descricao,
@@ -31,7 +31,7 @@ class ProdutosController < ApplicationController
   def pesquisa
     if params[:term]
       like = "%".concat(params[:term].upcase.concat("%"))
-      produtos = Produto.where("upper(descricao) like ?", like)
+      produtos = Produto.where("upper(descricao) like ?", like).order(:descricao)
     else
       produtos = Produto.all
     end

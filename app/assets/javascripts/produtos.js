@@ -30,8 +30,8 @@ function inclusaoProdutos() {
     Ext.create('Ext.Window', {
         id: 'dadosProduto',
         title: 'Dados',
-        width: 275,
-        height: 175,
+        width: 500,
+        height: 150,
         modal: true,
         items: {
             xtype: 'panel',
@@ -39,14 +39,12 @@ function inclusaoProdutos() {
                 xtype: 'textfield',
                 id: 'txtDescricao',
                 fieldLabel: 'Descrição',
-                maxLength: 120,
-                autoFocus: true
+                width: 450
             },{
                 xtype: 'textfield',
                 id: 'txtCodigoBarras',
                 fieldLabel: 'Código de Barras',
-                maxLength: 60,
-                autoFocus: true
+                width: 350
             },{
                 xtype: 'combobox',
                 id: 'tipoProduto',
@@ -54,7 +52,8 @@ function inclusaoProdutos() {
                 displayField: 'descricao',
                 valueField: 'id',
                 fieldLabel: 'Tipo de Produto',
-                emptyText: 'Selecione um Tipo de Produto'
+                emptyText: 'Selecione um Tipo de Produto',
+                width: 350
             }],
             buttons: [{
                 text: 'Salvar',
@@ -91,8 +90,8 @@ function edicaoProduto(id, descricao, codigo_barras, tipo_produto_id){
     Ext.create('Ext.Window', {
         id: 'dadosProduto',
         title: 'Dados',
-        width: 275,
-        height: 175,
+        width: 500,
+        height: 150,
         modal: true,
         items: {
             xtype: 'panel',
@@ -100,15 +99,13 @@ function edicaoProduto(id, descricao, codigo_barras, tipo_produto_id){
                 xtype: 'textfield',
                 id: 'txtDescricao',
                 fieldLabel: 'Descrição',
-                maxLength: 120,
-                autoFocus: true,
+                width: 450,
                 value: descricao
             },{
                 xtype: 'textfield',
                 id: 'txtCodigoBarras',
                 fieldLabel: 'Código de Barras',
-                maxLength: 60,
-                autoFocus: true,
+                width: 350,
                 value: codigo_barras
             },{
                 xtype: 'combobox',
@@ -118,6 +115,7 @@ function edicaoProduto(id, descricao, codigo_barras, tipo_produto_id){
                 valueField: 'id',
                 fieldLabel: 'Tipo de Produto',
                 emptyText: 'Selecione um Tipo de Produto',
+                width: 350,
                 value: tipo_produto_id
             }],
             buttons: [{
@@ -427,7 +425,7 @@ function abrirCadastroProdutos() {
                             edicaoProduto(rec.get('id'), rec.get('descricao'), rec.get('codigo_barras'), rec.get('tipo_produto_id'));
                         }
                     }]
-                },{
+                }/*,{
                     xtype: 'actioncolumn',
                     width: 25,
                     items: [{
@@ -437,7 +435,7 @@ function abrirCadastroProdutos() {
                             var rec = storeProduto.getAt(rowIndex);
                         }
                     }]
-                },{
+                }*/,{
                     xtype: 'actioncolumn',
                     width: 25,
                     items: [{
@@ -482,7 +480,7 @@ function abrirCadastroProdutos() {
                     store: storeProduto,
                     displayInfo: true,
                     displayMsg: 'Mostrando {0} - {1} de {2}',
-                    emptyMsg: "No topics to display"
+                    emptyMsg: "Nenhum produto cadastrado"
                 })
             }
         }).show();
