@@ -1,9 +1,15 @@
 class ProdutosController < ApplicationController
   def salvar
-    produto = Produto.new(:descricao => params[:descricao], :codigo_barras => params[:codigo_barras])
+    produto = Produto.new(:descricao => params[:descricao], :codigo_barras => params[:codigo_barras], :preco_compra => params[:preco_compra], :lucro => params[:lucro])
     produto.tipo_produto = TipoProduto.find(params[:tipo_produto_id])
 
-    if produto.save
+    produto.save
+
+    preco_produto = PrecoProduto.new(:data => Date.today)
+    preco_produto.preco = params[:preco_compra].to_f + (params[:lucro].to_f/100 * params[:preco_compra].to_f)
+    preco_produto.produto = produto
+
+    if preco_produto.save
       respond_to do |format|
         format.json { render :json => :success}
       end
@@ -18,7 +24,9 @@ class ProdutosController < ApplicationController
           :codigo_barras => p.codigo_barras,
           :tipo_produto_id => p.tipo_produto_id,
           :tipo_produto => p.tipo_produto && p.tipo_produto.descricao,
-          :quantidade => p.quantidade
+          :quantidade => p.quantidade,
+          :preco_compra => p.preco_compra,
+          :lucro => p.lucro
       }
     end
     respond_to do |format|

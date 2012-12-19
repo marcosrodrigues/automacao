@@ -6,7 +6,9 @@ Ext.define('Produto', {
         {name: 'codigo_barras', type: 'string'},
         {name: 'tipo_produto_id', type: 'int'},
         {name: 'tipo_produto', type: 'string'},
-        {name: 'quantidade', type: 'int'}
+        {name: 'quantidade', type: 'int'},
+        {name: 'preco_compra', type: 'float'},
+        {name: 'lucro', type: 'float'}
     ]
 });
 
@@ -31,7 +33,7 @@ function inclusaoProdutos() {
         id: 'dadosProduto',
         title: 'Dados',
         width: 500,
-        height: 150,
+        height: 200,
         modal: true,
         items: {
             xtype: 'panel',
@@ -54,6 +56,18 @@ function inclusaoProdutos() {
                 fieldLabel: 'Tipo de Produto',
                 emptyText: 'Selecione um Tipo de Produto',
                 width: 350
+            },{
+                xtype: 'numberfield',
+                id: 'preco_compra',
+                fieldLabel: 'Preço de Compra',
+                decimalSeparator: ',',
+                hideTrigger: true
+            },{
+                xtype: 'numberfield',
+                id: 'lucro',
+                fieldLabel: 'Lucro',
+                decimalSeparator: ',',
+                hideTrigger: true
             }],
             buttons: [{
                 text: 'Salvar',
@@ -67,7 +81,9 @@ function inclusaoProdutos() {
                         params: {
                             descricao: Ext.getCmp('txtDescricao').value,
                             codigo_barras: Ext.getCmp('txtCodigoBarras').value,
-                            tipo_produto_id: Ext.getCmp('tipoProduto').value
+                            tipo_produto_id: Ext.getCmp('tipoProduto').value,
+                            preco_compra: Ext.getCmp('preco_compra').value,
+                            lucro: Ext.getCmp('lucro').value
                         },
                         success: function(){
                             Ext.getCmp('dadosProduto').close();
@@ -186,7 +202,8 @@ function inclusaoPreco(produto_id) {
             items: [{
                 xtype: 'datefield',
                 id: 'data',
-                fieldLabel: 'Data'
+                fieldLabel: 'Data',
+                format: 'd/m/Y'
             },{
                 xtype: 'numberfield',
                 id: 'preco',
@@ -200,6 +217,9 @@ function inclusaoPreco(produto_id) {
                 handler: function(){
                     Ext.Ajax.request({
                         url: 'produtos/salvar_preco',
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
                         params: {
                             produto_id: produto_id,
                             data: Ext.getCmp('data').value,
@@ -235,6 +255,7 @@ function edicaoPreco(produto_id, id, data, preco){
                 xtype: 'datefield',
                 id: 'data',
                 fieldLabel: 'Data',
+                format: 'd/m/Y',
                 value: data
             },{
                 xtype: 'numberfield',
@@ -250,6 +271,9 @@ function edicaoPreco(produto_id, id, data, preco){
                 handler: function(){
                     Ext.Ajax.request({
                         url: 'produtos/alterar_preco',
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
                         method: 'put',
                         params: {
                             id: id,
@@ -308,6 +332,9 @@ function abrirPrecos(id, descricao) {
 
                                     Ext.Ajax.request({
                                         url: 'produtos/excluir_preco',
+                                        headers: {
+                                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                                        },
                                         method: 'delete',
                                         params: {
                                             id: rec.get('id')
@@ -337,6 +364,7 @@ function abrirPrecos(id, descricao) {
                 xtype: 'datecolumn',
                 text: 'Data',
                 dataIndex: 'data',
+                format: 'd/m/Y',
                 flex: 1
             },{
                 text     : 'Preço',
@@ -371,7 +399,7 @@ function abrirCadastroProdutos() {
 
         Ext.create('Ext.Window', {
             title: 'Produtos',
-            width: 800,
+            width: 900,
             height: 532,
             plain: true,
             layout: 'fit',
@@ -400,6 +428,9 @@ function abrirCadastroProdutos() {
 
                                         Ext.Ajax.request({
                                             url: 'produtos/excluir',
+                                            headers: {
+                                                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                                            },
                                             method: 'delete',
                                             params: {
                                                 id: rec.get('id')
@@ -458,10 +489,19 @@ function abrirCadastroProdutos() {
                     text     : 'Tipo de Produto',
                     dataIndex: 'tipo_produto'
                 },{
+                    text     : 'Preço de Compra',
+                    dataIndex: 'preco_compra',
+                    align: 'right'
+                },{
+                    text     : 'Lucro(%)',
+                    dataIndex: 'lucro',
+                    width: 60
+                },{
                     text     : 'Quantidade',
-                    dataIndex: 'quantidade'
+                    dataIndex: 'quantidade',
+                    width: 70
                 }],
-                width: 800,
+                width: 900,
                 height: 532,
                 viewConfig: {
                     stripeRows: true

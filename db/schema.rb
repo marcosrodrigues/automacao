@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121114010124) do
+ActiveRecord::Schema.define(:version => 20121218234904) do
 
   create_table "clientes", :force => true do |t|
     t.string   "nome"
@@ -94,6 +94,8 @@ ActiveRecord::Schema.define(:version => 20121114010124) do
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
     t.integer  "quantidade",      :default => 0
+    t.float    "preco_compra"
+    t.float    "lucro"
   end
 
   add_index "produtos", ["tipo_produto_id"], :name => "index_produtos_on_tipo_produto_id"
