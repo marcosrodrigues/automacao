@@ -491,11 +491,13 @@ function abrirCadastroProdutos() {
                 },{
                     text     : 'Preço de Compra',
                     dataIndex: 'preco_compra',
-                    align: 'right'
+                    align: 'right',
+                    hidden: true
                 },{
                     text     : 'Lucro(%)',
                     dataIndex: 'lucro',
-                    width: 60
+                    width: 60,
+                    hidden: true
                 },{
                     text     : 'Quantidade',
                     dataIndex: 'quantidade',
