@@ -31,4 +31,15 @@ class ServicosController < ApplicationController
       end
     end
   end
+
+  def pesquisa
+    if params[:term]
+      like = "%".concat(params[:term].upcase.concat("%"))
+      servicos = Servico.where("upper(descricao) like ?", like).order(:descricao)
+    else
+      servicos = Servico.all
+    end
+    list = servicos.limit(15).map { |s| Hash[id: s.id, label: s.descricao, name: s.descricao] }
+    render json: list
+  end
 end

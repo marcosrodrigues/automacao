@@ -64,6 +64,7 @@ Automacao::Application.routes.draw do
   post "servicos/salvar"
   delete "servicos/excluir"
   put "servicos/alterar"
+  match "/servicos/pesquisa" => "servicos#pesquisa"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

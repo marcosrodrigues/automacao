@@ -7,12 +7,12 @@
     <div class="field">
         <label>Produtos</label>
         <br/>
-        <input type="text" data-bind="value: vendaAtiva.total" />
+        <input type="text" data-bind="value: vendaAtiva.totalProdutos" />
     </div>
     <div class="field">
         <label>Serviços</label>
         <br/>
-        <input type="text" data-bind="value: vendaAtiva.total" />
+        <input type="text" data-bind="value: vendaAtiva.totalServicos" />
     </div>
     <div class="field">
         <label>Total</label>
@@ -42,11 +42,11 @@
             </tr>
         </thead>
     </table>
-    <div class="grid">
+    <div class="grid" id="grid-produtos">
       <table width="100%">
         <tbody data-bind="foreach: vendaAtiva.produtos">
             <tr>
-              <td width="60%" data-bind="text: nome"></td>
+              <td width="60%" data-bind="text: descricao"></td>
               <td width="10%" align="right"><input type="number" class="quantidade" data-bind="value: quantidade" /></td>
               <td align="right" data-bind="text: preco"></td>
               <td align="right" data-bind="text: total">10,00</td>
@@ -65,11 +65,11 @@
             </tr>
         </thead>
     </table>
-    <div class="grid">
+    <div class="grid" id="grid-servicos">
       <table width="100%">
-        <tbody data-bind="foreach: vendaAtiva.produtos">
+        <tbody data-bind="foreach: vendaAtiva.servicos">
             <tr>
-              <td width="60%" data-bind="text: nome"></td>
+              <td width="60%" data-bind="text: descricao"></td>
               <td width="10%" align="right"><input type="number" class="quantidade" data-bind="value: quantidade" /></td>
               <td align="right" data-bind="text: preco"></td>
               <td align="right" data-bind="text: total">10,00</td>

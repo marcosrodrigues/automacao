@@ -1,7 +1,18 @@
-function ProdutoModel(id, nome){
+function ProdutoModel(id, descricao){
     this.id = id;
-    this.nome = ko.observable(nome);
+    this.descricao = ko.observable(descricao);
     this.preco = ko.observable(10);
+    this.quantidade = ko.observable(1);
+
+    this.total = ko.computed(function(){
+        return this.preco() * this.quantidade();
+    }, this);
+}
+
+function ServicoModel(id, descricao) {
+    this.id = id;
+    this.descricao = ko.observable(descricao);
+    this.preco = ko.observable(20);
     this.quantidade = ko.observable(1);
 
     this.total = ko.computed(function(){
@@ -13,12 +24,23 @@ function VendaModel(id){
     this.id = id;
     this.desconto = ko.observable(0);
     this.produtos = ko.observableArray([]);
+    this.servicos = ko.observableArray([]);
 
-    this.total = ko.computed(function(){
+    this.totalProdutos = ko.computed(function(){        
         return this.produtos().reduce(function (acumulador, item) {
             return acumulador + item.total();
         }, 0).toFixed(2);
     }, this);
+
+    this.totalServicos = ko.computed(function(){        
+        return this.servicos().reduce(function (acumulador, item) {
+            return acumulador + item.total();
+        }, 0).toFixed(2);
+    }, this);
+
+    this.total = ko.computed(function(){        
+        return (parseFloat(this.totalProdutos()) + parseFloat(this.totalServicos())).toFixed(2);
+    }, this);    
 }
 
 function VendasModel(){
@@ -209,10 +231,24 @@ $(function(){
         select: function(event, ui) {
             vendaAtiva().produtos.push(new ProdutoModel(ui.item.id, ui.item.label));
 
-            $(".quantidade").last().focus();
+            $("#grid-produtos .quantidade").last().focus();
         },
         close: function() {
             $('#pesquisa-produtos').val('');
+        }
+    });
+
+    $('#pesquisa-servicos').autocomplete({
+        minLength: 2,
+        delay: 1000,
+        source: '/servicos/pesquisa',
+        select: function(event, ui) {
+            vendaAtiva().servicos.push(new ServicoModel(ui.item.id, ui.item.label));
+
+            $("#grid-servicos .quantidade").last().focus();
+        },
+        close: function() {
+            $('#pesquisa-servicos').val('');
         }
     });
 
