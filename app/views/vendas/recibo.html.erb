@@ -27,9 +27,9 @@
       <th width="700px">Serviço</th>
       <th width="100px">Quantidade</th>
     </tr>
-    <% @venda.item_venda.each do |v| %>
+    <% @venda.venda_servico.each do |v| %>
       <tr>
-        <td><%= v.produto.descricao %></td>
+        <td><%= v.servico.descricao %></td>
         <td align="right"><%= v.quantidade %></td>
       </tr>
     <% end %>

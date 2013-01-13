@@ -11,13 +11,37 @@ class VendasController < ApplicationController
     end  
   end
 
-  def adiciona_item_venda
+  def adiciona_produto
     item_venda = ItemVenda.new
     item_venda.venda = Venda.find(params[:id])
     item_venda.produto = Produto.find(params[:id_produto])
     item_venda.quantidade = params[:quantidade]
 
     if item_venda.save
+      
+      estoque = MovimentacaoEstoque.new
+      estoque.produto = item_venda.produto
+      estoque.operacao = 2
+      estoque.quantidade = item_venda.quantidade
+      estoque.save
+
+      produto = item_venda.produto
+      produto.quantidade -= item_venda.quantidade
+      produto.save
+
+      respond_to do |format|
+        format.json { render :json => :success}
+      end
+    end
+  end
+
+  def adiciona_servico
+    venda_servico = VendaServico.new
+    venda_servico.venda = Venda.find(params[:id])
+    venda_servico.servico = Servico.find(params[:id_servico])
+    venda_servico.quantidade = params[:quantidade]
+
+    if venda_servico.save
       respond_to do |format|
         format.json { render :json => :success}
       end
