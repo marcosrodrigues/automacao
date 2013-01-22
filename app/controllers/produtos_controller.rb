@@ -43,7 +43,14 @@ class ProdutosController < ApplicationController
     else
       produtos = Produto.all
     end
-    list = produtos.limit(15).map { |p| Hash[id: p.id, label: p.descricao, name: p.descricao] }
+    list = produtos.limit(15).map { |p| 
+      Hash[
+        id: p.id, 
+        label: p.descricao, 
+        name: p.descricao,
+        preco: p.preco_atual
+      ] 
+    }
     render json: list
   end
 

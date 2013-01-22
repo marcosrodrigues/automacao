@@ -1,7 +1,7 @@
-function ProdutoModel(id, descricao){
+function ProdutoModel(id, descricao, preco){
     this.id = id;
     this.descricao = ko.observable(descricao);
-    this.preco = ko.observable(10);
+    this.preco = ko.observable(preco);
     this.quantidade = ko.observable(1);
 
     this.total = ko.computed(function(){
@@ -229,7 +229,7 @@ $(function(){
         delay: 1000,
         source: '/produtos/pesquisa',
         select: function(event, ui) {
-            vendaAtiva().produtos.push(new ProdutoModel(ui.item.id, ui.item.label));
+            vendaAtiva().produtos.push(new ProdutoModel(ui.item.id, ui.item.descricao, ui.item.preco));
 
             $("#grid-produtos .quantidade").last().focus();
         },
