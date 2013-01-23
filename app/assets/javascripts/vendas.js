@@ -51,7 +51,7 @@ function VendaModel(id, cliente_id, cliente_nome){
 
 function VendasModel(){
     this.vendas = ko.observableArray([]);
-    this.vendaAtiva = null;
+    this.vendaAtiva = new VendaModel();
 }
 
 var vendasAbertas;
@@ -142,6 +142,8 @@ $(function(){
             vendas.forEach(function(v) {
                 vendasAbertas.vendas.push(new VendaModel(v.id, v.cliente_id, v.cliente_nome));
             });
+
+            ko.applyBindings(vendasAbertas);
         }
     });
 
