@@ -32,4 +32,15 @@ class ClientesController < ApplicationController
       end
     end
   end
+
+  def pesquisa
+    if params[:term]
+      like = "%".concat(params[:term].upcase.concat("%"))
+      clientes = Cliente.where("upper(nome) like ?", like).order(:nome)
+    else
+      clientes = Cliente.all
+    end
+    list = clientes.limit(15).map { |s| Hash[id: s.id, label: s.nome, name: s.nome] }
+    render json: list
+  end
 end

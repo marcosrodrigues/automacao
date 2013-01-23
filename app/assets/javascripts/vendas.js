@@ -20,8 +20,14 @@ function ServicoModel(id, descricao) {
     }, this);
 }
 
-function VendaModel(id){
+function Cliente(id, nome) {
     this.id = id;
+    this.nome = ko.observable(nome);
+}
+
+function VendaModel(id, cliente_id, cliente_nome){
+    this.id = id;
+    this.cliente = ko.observable(new Cliente(cliente_id, cliente_nome));
     this.desconto = ko.observable(0);
     this.produtos = ko.observableArray([]);
     this.servicos = ko.observableArray([]);
@@ -84,8 +90,38 @@ function novaVenda() {
             vendasAbertas.vendaAtiva = venda;    
 
             ko.applyBindings(vendasAbertas);
+
+            informarCliente();
         }
     });    
+}
+
+function informarCliente() {
+    $( '#cliente' ).dialog({
+        title: 'Cliente da venda',
+        modal: true,
+        resizable: false,
+        closable: false,
+        height: 200,
+        width: 600,
+        buttons: {
+            Selecionar: function(){
+                $.ajax({
+                    type: 'post',
+                    url: '/vendas/informar_cliente/',
+                    data: {
+                        id: vendaAtiva().id,
+                        cliente_id: vendaAtiva().cliente().id
+                    },
+                    dataType: 'json',
+                    beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'))},
+                    success: function() {
+                        $('#cliente').dialog('close');
+                    }
+                });
+            }
+        }
+    });
 }
 
 function vendaAtiva() {
@@ -104,15 +140,16 @@ $(function(){
         beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'))},
         success: function(vendas) {
             vendas.forEach(function(v) {
-                vendasAbertas.vendas.push(new VendaModel(v.id));
+                vendasAbertas.vendas.push(new VendaModel(v.id, v.cliente_id, v.cliente_nome));
             });
-
-            novaVenda();
         }
     });
 
     // Nova venda
     shortcut.add('F2', function(){
+
+        // TODO: Validar se foi informado o cliente na venda ativa
+
         novaVenda();
 
         $("#footer #info").text("VENDA");
@@ -120,6 +157,9 @@ $(function(){
 
     // Fechar venda
     shortcut.add('F3', function(){
+
+        // TODO: Validar se foi informado o cliente na venda ativa
+
         $("#footer #info").text("FECHANDO VENDA");
 
         var fechada = false;
@@ -175,6 +215,9 @@ $(function(){
 
     // Mostra vendas abertas
     shortcut.add('F7', function(){
+
+        // TODO: Validar se foi informado o cliente na venda ativa
+
         $( '#vendas-abertas' ).dialog({
             title: 'Vendas Abertas',
             modal: true,
@@ -218,6 +261,11 @@ $(function(){
         });*/
     });
 
+    // Cliente da venda
+    shortcut.add('F9', function(){
+        informarCliente();
+    });
+
     reajusta();
 
     $(window).resize(function(){
@@ -229,6 +277,12 @@ $(function(){
         delay: 1000,
         source: '/produtos/pesquisa',
         select: function(event, ui) {
+
+            // TODO: Validar se foi informado o cliente na venda ativa
+
+            if (!vendaAtiva())
+                novaVenda();
+
             vendaAtiva().produtos.push(new ProdutoModel(ui.item.id, ui.item.descricao, ui.item.preco));
 
             $("#grid-produtos .quantidade").last().focus();
@@ -243,12 +297,27 @@ $(function(){
         delay: 1000,
         source: '/servicos/pesquisa',
         select: function(event, ui) {
+
+            // TODO: Validar se foi informado o cliente na venda ativa
+
+            if (!vendaAtiva())
+                novaVenda();
+            
             vendaAtiva().servicos.push(new ServicoModel(ui.item.id, ui.item.label));
 
             $("#grid-servicos .quantidade").last().focus();
         },
         close: function() {
             $('#pesquisa-servicos').val('');
+        }
+    });
+
+    $('#pesquisa-clientes').autocomplete({
+        minLength: 2,
+        delay: 1000,
+        source: '/clientes/pesquisa',
+        select: function(event, ui) {
+            vendaAtiva().cliente(new Cliente(ui.item.id, ui.item.label));
         }
     });
 

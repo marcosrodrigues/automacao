@@ -49,8 +49,16 @@ class VendasController < ApplicationController
   end
 
   def vendas_em_aberto
+    vendas = Venda.find_all_by_fechada(false).map do |v|
+      {
+        :id => v.id,
+        :cliente_id => v.cliente_id,
+        :cliente_nome => v.cliente ? v.cliente.nome : ""
+      }
+    end
+
     respond_to do |format|
-      format.json { render :json => Venda.find_all_by_fechada(false)}
+      format.json { render :json => vendas }
     end
   end
 
@@ -59,6 +67,17 @@ class VendasController < ApplicationController
     venda.desconto = params[:desconto]
     venda.fechada = true
     
+    if venda.save 
+      respond_to do |format|
+        format.json { render :json => :success}
+      end
+    end
+  end
+
+  def informar_cliente
+    venda = Venda.find(params[:id])
+    venda.cliente = Cliente.find(params[:cliente_id])  
+
     if venda.save 
       respond_to do |format|
         format.json { render :json => :success}

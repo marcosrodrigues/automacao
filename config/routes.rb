@@ -7,6 +7,7 @@ Automacao::Application.routes.draw do
   get "vendas/index"
   get "vendas/nova_venda"
   post "vendas/fechar"
+  post "vendas/informar_cliente"
   post "vendas/adiciona_produto"
   post "vendas/adiciona_servico"
   get "vendas/report"
@@ -43,6 +44,7 @@ Automacao::Application.routes.draw do
   post "clientes/salvar"
   delete "clientes/excluir"
   put "clientes/alterar"
+  match "/clientes/pesquisa" => "clientes#pesquisa"
 
   # Conta a Pagar
   get "contas_pagar/lista"
