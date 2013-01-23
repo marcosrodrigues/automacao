@@ -29,6 +29,8 @@
       <h3>F7 - Vendas Abertas<h3>
       <h3>F8 - Recibo de Venda<h3>
       <h3>F9 - Cliente da venda<h3>
+      <h3>F10 - Navegar nos Produtos<h3>
+      <h3>F11 - Navegar nos Serviços<h3>
     </div>
 </div>
 
@@ -48,7 +50,7 @@
         <tbody data-bind="foreach: vendaAtiva.produtos">
             <tr>
               <td width="60%" data-bind="text: descricao"></td>
-              <td width="10%" align="right"><input type="number" class="quantidade" data-bind="value: quantidade" /></td>
+              <td width="10%" align="right"><input class="quantidade" data-bind="value: quantidade" /></td>
               <td align="right" data-bind="text: preco"></td>
               <td align="right" data-bind="text: total">0,00</td>
             </tr>
@@ -71,7 +73,7 @@
         <tbody data-bind="foreach: vendaAtiva.servicos">
             <tr>
               <td width="60%" data-bind="text: descricao"></td>
-              <td width="10%" align="right"><input type="number" class="quantidade" data-bind="value: quantidade" /></td>
+              <td width="10%" align="right"><input class="quantidade" data-bind="value: quantidade" /></td>
               <td align="right" data-bind="text: preco"></td>
               <td align="right" data-bind="text: total">0,00</td>
             </tr>

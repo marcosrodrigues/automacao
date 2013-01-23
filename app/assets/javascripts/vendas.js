@@ -266,6 +266,53 @@ $(function(){
         informarCliente();
     });
 
+    // Navegar nos produtos
+    shortcut.add('F10', function(){
+        $("#grid-produtos tbody tr:first").addClass("active");
+
+        $("#grid-produtos tbody tr:first .quantidade").focus();
+    });
+
+    // Navegar nos produtos
+    shortcut.add('F11', function(){
+        $("#grid-servicos tbody tr:first").addClass("active");
+
+        $("#grid-servicos tbody tr:first .quantidade").focus();
+    });
+
+    $(".quantidade").live("keydown", function (e) {
+        
+        var keyCode = e.keyCode || e.which,
+            arrow = {left: 37, up: 38, right: 39, down: 40 };
+
+        switch (keyCode) {
+            case arrow.up:
+                var prev = $(this).parents("tr").prev();
+
+                if (prev.length > 0) {
+                    $(this).parents("tr").removeClass("active");
+
+                    prev.addClass("active");
+
+                    prev.find(".quantidade").focus();    
+                }
+                
+            break;
+            case arrow.down:
+                var next = $(this).parents("tr").next();
+
+                if (next.length > 0) {
+                    $(this).parents("tr").removeClass("active");
+
+                    next.addClass("active");
+
+                    next.find(".quantidade").focus();    
+                }
+                
+            break;
+        }
+    });
+
     reajusta();
 
     $(window).resize(function(){
@@ -302,7 +349,7 @@ $(function(){
 
             if (!vendaAtiva())
                 novaVenda();
-            
+
             vendaAtiva().servicos.push(new ServicoModel(ui.item.id, ui.item.label));
 
             $("#grid-servicos .quantidade").last().focus();
