@@ -7,17 +7,17 @@
     <div class="field">
         <label>Produtos</label>
         <br/>
-        <input type="text" data-bind="value: vendaAtiva.totalProdutos" />
+        <input type="text" data-bind="value: vendaAtiva().totalProdutos" />
     </div>
     <div class="field">
         <label>Serviços</label>
         <br/>
-        <input type="text" data-bind="value: vendaAtiva.totalServicos" />
+        <input type="text" data-bind="value: vendaAtiva().totalServicos" />
     </div>
     <div class="field">
         <label>Total</label>
         <br/>
-        <input type="text" data-bind="value: vendaAtiva.total" />
+        <input type="text" data-bind="value: vendaAtiva().total" />
     </div>
 
     <div id="atalhos">
@@ -47,7 +47,7 @@
     </table>
     <div class="grid" id="grid-produtos">
       <table width="100%">
-        <tbody data-bind="foreach: vendaAtiva.produtos">
+        <tbody data-bind="foreach: vendaAtiva().produtos">
             <tr>
               <td width="60%" data-bind="text: descricao"></td>
               <td width="10%" align="right"><input class="quantidade" data-bind="value: quantidade" /></td>
@@ -70,7 +70,7 @@
     </table>
     <div class="grid" id="grid-servicos">
       <table width="100%">
-        <tbody data-bind="foreach: vendaAtiva.servicos">
+        <tbody data-bind="foreach: vendaAtiva().servicos">
             <tr>
               <td width="60%" data-bind="text: descricao"></td>
               <td width="10%" align="right"><input class="quantidade" data-bind="value: quantidade" /></td>
@@ -90,7 +90,7 @@
     <div class="field">
         <label>Desconto</label>
         <br/>
-        <input type="text" data-bind="value: vendaAtiva.desconto" />
+        <input type="text" data-bind="value: vendaAtiva().desconto" />
     </div>
 </div>
 
@@ -102,14 +102,16 @@
   <table width="100%">
       <thead>
           <tr>
-            <th align="center">Id</th>
+            <th>Cliente</th>
           </tr>
       </thead>
   </table>
-  <div id="grid">
+  <div class="grid" style="height:230px">
     <table width="100%">
       <tbody data-bind="foreach: vendas">
           <tr>
+            <td width="100px"><a href="#" class="select">Selecionar</a></td>
+            <td data-bind="text: id" class="id"></td>
             <td data-bind="text: cliente().nome"></td>
           </tr>
       </tbody>

@@ -13,6 +13,8 @@ Automacao::Application.routes.draw do
   get "vendas/report"
   get "vendas/recibo"
   get "vendas/vendas_em_aberto"
+  get "vendas/produtos_da_venda"
+  get "vendas/servicos_da_venda"
 
   get "home/index"
 

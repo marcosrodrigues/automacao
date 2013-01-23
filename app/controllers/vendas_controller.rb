@@ -85,6 +85,32 @@ class VendasController < ApplicationController
     end
   end
 
+  def produtos_da_venda
+    produtos = Venda.find(params[:id]).item_venda.map do |p|
+      {
+        :id => p.id,
+        :produto => p.produto.descricao
+      }
+    end
+
+    respond_to do |format|
+      format.json { render :json => produtos}
+    end  
+  end
+
+  def servicos_da_venda
+    servicos = Venda.find(params[:id]).venda_servico.map do |s|
+      {
+        :id => s.id,
+        :servico => s.servico.descricao
+      }
+    end
+
+    respond_to do |format|
+      format.json { render :json => servicos}
+    end  
+  end
+
   def recibo
     @empresa = Empresa.first
     @venda = Venda.find(params[:id])

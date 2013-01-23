@@ -61,23 +61,23 @@ input {
   overflow: hidden;
 }
 
-#content .grid {
-  overflow-y: scroll;
-}
-#content table {
+table {
   border-collapse:collapse;
 }
-#content table thead {
+table thead {
   background-color: #bfd2e6;
 }
-#content .grid thead tr {
+.grid {
+  overflow-y: scroll;
+}
+.grid thead tr {
   height: 20px;
 }
-#content .grid tbody tr {
+.grid tbody tr {
   height: 30px;
   border: 1px solid #D0DEF0;
 }
-#content .grid tbody tr.active {
+.grid tbody tr.active {
   background-color: #EDF0D0; 
 }
 

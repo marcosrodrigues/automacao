@@ -51,10 +51,17 @@ function VendaModel(id, cliente_id, cliente_nome){
 
 function VendasModel(){
     this.vendas = ko.observableArray([]);
-    this.vendaAtiva = new VendaModel();
+    this.vendaAtiva = ko.observable(new VendaModel());
 }
 
 var vendasAbertas;
+
+function selecionarVenda(id) {
+    vendasAbertas.vendas().forEach(function(v) { 
+        if (v.id == id)
+            vendasAbertas.vendaAtiva(v);
+    });
+}
 
 function reajusta(){
     var heightLeftAndContent = $(window).height() * 0.9;
@@ -71,8 +78,8 @@ function reajusta(){
     $('#content').css('height', (heightLeftAndContent - heightHeader) + 'px');
     $('#content').css('width', widthContent + 'px');
 
-    $('.grid').css('height', (heightLeftAndContent - heightHeader - 30) / 2 + 'px');
-    $('.grid').css('width', widthContent + 'px');
+    $('#content .grid').css('height', (heightLeftAndContent - heightHeader - 30) / 2 + 'px');
+    $('#content .grid').css('width', widthContent + 'px');
 
     $('#footer').css('height', heightFooter + 'px');
 }
@@ -87,9 +94,7 @@ function novaVenda() {
             var venda = new VendaModel(id);
 
             vendasAbertas.vendas.push(venda);
-            vendasAbertas.vendaAtiva = venda;    
-
-            ko.applyBindings(vendasAbertas);
+            vendasAbertas.vendaAtiva(venda);    
 
             informarCliente();
         }
@@ -125,7 +130,7 @@ function informarCliente() {
 }
 
 function vendaAtiva() {
-    return vendasAbertas.vendaAtiva;
+    return vendasAbertas.vendaAtiva();
 }
 
 $(function(){
@@ -220,6 +225,8 @@ $(function(){
 
         // TODO: Validar se foi informado o cliente na venda ativa
 
+        $("#vendas-abertas .active").removeClass("active");
+
         $( '#vendas-abertas' ).dialog({
             title: 'Vendas Abertas',
             modal: true,
@@ -228,10 +235,47 @@ $(function(){
             width: 600,
             buttons: {
                 Selecionar: function(){
-                    $('#vendas-abertas').dialog('close');
+                    selecionarVenda($("#vendas-abertas .active .id").text());
+
+                    $.ajax({
+                        type: 'get',
+                        url: '/vendas/produtos_da_venda/',
+                        data: {
+                            id: vendaAtiva().id
+                        },
+                        dataType: 'json',
+                        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'))},
+                        success: function(produtos) {
+                            vendaAtiva().produtos([]);
+                            produtos.forEach(function(p) {
+                                vendaAtiva().produtos.push(new ProdutoModel(p.id, p.produto, 10));
+                            });
+
+                            $.ajax({
+                                type: 'get',
+                                url: '/vendas/servicos_da_venda/',
+                                data: {
+                                    id: vendaAtiva().id
+                                },
+                                dataType: 'json',
+                                beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'))},
+                                success: function(servicos) {
+                                    vendaAtiva().servicos([]);
+                                    servicos.forEach(function(s) {
+                                        vendaAtiva().servicos.push(new ServicoModel(s.id, s.servico));
+                                    });
+
+                                    $('#vendas-abertas').dialog('close');
+                                }
+                            });
+                        }
+                    });
                 }
             }
         });
+
+        $( '#vendas-abertas .grid tbody tr:first' ).addClass("active");
+        $( '#vendas-abertas .grid tbody tr:first .select' ).focus();
     });
 
     // Recibo da venda
@@ -309,6 +353,39 @@ $(function(){
                     next.addClass("active");
 
                     next.find(".quantidade").focus();    
+                }
+                
+            break;
+        }
+    });
+
+    $(".select").live("keydown", function (e) {
+        
+        var keyCode = e.keyCode || e.which,
+            arrow = {left: 37, up: 38, right: 39, down: 40 };
+
+        switch (keyCode) {
+            case arrow.up:
+                var prev = $(this).parents("tr").prev();
+
+                if (prev.length > 0) {
+                    $(this).parents("tr").removeClass("active");
+
+                    prev.addClass("active");
+
+                    prev.find(".select").focus();    
+                }
+                
+            break;
+            case arrow.down:
+                var next = $(this).parents("tr").next();
+
+                if (next.length > 0) {
+                    $(this).parents("tr").removeClass("active");
+
+                    next.addClass("active");
+
+                    next.find(".select").focus();    
                 }
                 
             break;
