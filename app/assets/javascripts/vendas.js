@@ -61,6 +61,40 @@ function selecionarVenda(id) {
         if (v.id == id)
             vendasAbertas.vendaAtiva(v);
     });
+
+    $.ajax({
+        type: 'get',
+        url: '/vendas/produtos_da_venda/',
+        data: {
+            id: vendaAtiva().id
+        },
+        dataType: 'json',
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'))},
+        success: function(produtos) {
+            vendaAtiva().produtos([]);
+            produtos.forEach(function(p) {
+                vendaAtiva().produtos.push(new ProdutoModel(p.id, p.produto, 10));
+            });
+
+            $.ajax({
+                type: 'get',
+                url: '/vendas/servicos_da_venda/',
+                data: {
+                    id: vendaAtiva().id
+                },
+                dataType: 'json',
+                beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'))},
+                success: function(servicos) {
+                    vendaAtiva().servicos([]);
+                    servicos.forEach(function(s) {
+                        vendaAtiva().servicos.push(new ServicoModel(s.id, s.servico));
+                    });
+
+                    $('#vendas-abertas').dialog('close');
+                }
+            });
+        }
+    });
 }
 
 function reajusta(){
@@ -165,7 +199,10 @@ $(function(){
     // Fechar venda
     shortcut.add('F3', function(){
 
-        // TODO: Validar se foi informado o cliente na venda ativa
+        if (vendaAtiva().id && !vendaAtiva().cliente().id) {
+            informarCliente();
+            return false;
+        }
 
         $("#footer #info").text("FECHANDO VENDA");
 
@@ -223,7 +260,10 @@ $(function(){
     // Mostra vendas abertas
     shortcut.add('F7', function(){
 
-        // TODO: Validar se foi informado o cliente na venda ativa
+        if (vendaAtiva().id && !vendaAtiva().cliente().id) {
+            informarCliente();
+            return false;
+        }
 
         $("#vendas-abertas .active").removeClass("active");
 
@@ -236,40 +276,6 @@ $(function(){
             buttons: {
                 Selecionar: function(){
                     selecionarVenda($("#vendas-abertas .active .id").text());
-
-                    $.ajax({
-                        type: 'get',
-                        url: '/vendas/produtos_da_venda/',
-                        data: {
-                            id: vendaAtiva().id
-                        },
-                        dataType: 'json',
-                        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'))},
-                        success: function(produtos) {
-                            vendaAtiva().produtos([]);
-                            produtos.forEach(function(p) {
-                                vendaAtiva().produtos.push(new ProdutoModel(p.id, p.produto, 10));
-                            });
-
-                            $.ajax({
-                                type: 'get',
-                                url: '/vendas/servicos_da_venda/',
-                                data: {
-                                    id: vendaAtiva().id
-                                },
-                                dataType: 'json',
-                                beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'))},
-                                success: function(servicos) {
-                                    vendaAtiva().servicos([]);
-                                    servicos.forEach(function(s) {
-                                        vendaAtiva().servicos.push(new ServicoModel(s.id, s.servico));
-                                    });
-
-                                    $('#vendas-abertas').dialog('close');
-                                }
-                            });
-                        }
-                    });
                 }
             }
         });
@@ -404,7 +410,12 @@ $(function(){
         source: '/produtos/pesquisa',
         select: function(event, ui) {
 
-            // TODO: Validar se foi informado o cliente na venda ativa
+            // TODO: ver se ja foi adicionado o mesmo produto
+
+            if (vendaAtiva().id && !vendaAtiva().cliente().id) {
+                informarCliente();
+                return false;
+            }
 
             if (!vendaAtiva())
                 novaVenda();
@@ -424,7 +435,12 @@ $(function(){
         source: '/servicos/pesquisa',
         select: function(event, ui) {
 
-            // TODO: Validar se foi informado o cliente na venda ativa
+            // TODO: ver se ja foi adicionado o mesmo serviço
+
+            if (vendaAtiva().id && !vendaAtiva().cliente().id) {
+                informarCliente();
+                return false;
+            }
 
             if (!vendaAtiva())
                 novaVenda();
@@ -487,5 +503,11 @@ $(function(){
                 }
             });
         }
+    });
+
+    $("#vendas-abertas .select").live("click", function(e){
+        e.preventDefault();
+
+        selecionarVenda($(this).parents("tr").find(".id").text());
     });
 });

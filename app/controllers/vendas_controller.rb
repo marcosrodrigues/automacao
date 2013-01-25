@@ -12,6 +12,9 @@ class VendasController < ApplicationController
   end
 
   def adiciona_produto
+
+    # TODO - se o produto ja tiver sido adicionado alterar a quantidade
+
     item_venda = ItemVenda.new
     item_venda.venda = Venda.find(params[:id])
     item_venda.produto = Produto.find(params[:id_produto])
@@ -36,6 +39,9 @@ class VendasController < ApplicationController
   end
 
   def adiciona_servico
+
+    # TODO - se o serviço ja tiver sido adicionado alterar a quantidade
+
     venda_servico = VendaServico.new
     venda_servico.venda = Venda.find(params[:id])
     venda_servico.servico = Servico.find(params[:id_servico])

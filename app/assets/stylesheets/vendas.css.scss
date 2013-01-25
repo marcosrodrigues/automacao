@@ -26,13 +26,13 @@ body {
 }
 
 #left #atalhos {
-  margin-left: 10px;
+  margin-left: 5px;
   margin-top: 20px;
-  font: 13px Arial, "MS Trebuchet", sans-serif;
+  font: 10px Arial, "MS Trebuchet", sans-serif;
 }
 
 #left #atalhos h3 {
-  margin: 5px;
+  margin: 3px;
 }
 
 #left .field {
@@ -90,6 +90,13 @@ table thead {
 
 #footer #info {
   font: 42px Arial, "MS Trebuchet", sans-serif;
+}
+
+#footer #nome-cliente {
+  font: 20px Arial, "MS Trebuchet", sans-serif;
+  margin-left: 5px;
+  margin-top: 20px;
+  float: left;
 }
 
 #pesquisa-clientes {

@@ -21,16 +21,18 @@
     </div>
 
     <div id="atalhos">
-      <h3>F2 - Nova Venda<h3>
-      <h3>F3 - Fechar Venda<h3>
-      <h3>F4 - Cancelar Venda<h3>
-      <h3>F5 - Pesquisa de Produtos<h3>
-      <h3>F6 - Pesquisa de Serviços<h3>
-      <h3>F7 - Vendas Abertas<h3>
-      <h3>F8 - Recibo de Venda<h3>
-      <h3>F9 - Cliente da venda<h3>
-      <h3>F10 - Navegar nos Produtos<h3>
-      <h3>F11 - Navegar nos Serviços<h3>
+      <h3>F2 - Nova Venda</h3>
+      <h3>F3 - Fechar Venda</h3>
+      <h3>F4 - Cancelar Venda</h3>
+      <h3>F5 - Pesquisa de Produtos</h3>
+      <h3>F6 - Pesquisa de Serviços</h3>
+      <h3>F7 - Vendas Abertas</h3>
+      <h3>F8 - Recibo de Venda</h3>
+      <h3>F9 - Cliente da venda</h3>
+      <h3>F10 - Navegar nos Produtos</h3>
+      <h3>F11 - Navegar nos Serviços</h3>
+      <h3>Ctrl + A - Excluir Produto Selecionado</h3>
+      <h3>Ctrl + S - Excluir Serviço Selecionado</h3>
     </div>
 </div>
 
@@ -83,7 +85,8 @@
 </div>
 
 <div id="footer">
-    <h1 id="info">LIVRE</h1>
+  <h1 id="nome-cliente">Cliente: <span data-bind="text: vendaAtiva().cliente().nome()"></span></h1>
+  <h1 id="info">LIVRE</h1>
 </div>
 
 <div id="fechar-venda" style="display: none">
