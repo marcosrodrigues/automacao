@@ -57,44 +57,48 @@ function VendasModel(){
 var vendasAbertas;
 
 function selecionarVenda(id) {
-    vendasAbertas.vendas().forEach(function(v) { 
-        if (v.id == id)
-            vendasAbertas.vendaAtiva(v);
-    });
+    if (id) {
+        vendasAbertas.vendas().forEach(function(v) { 
+            if (v.id == id)
+                vendasAbertas.vendaAtiva(v);
+        });
 
-    $.ajax({
-        type: 'get',
-        url: '/vendas/produtos_da_venda/',
-        data: {
-            id: vendaAtiva().id
-        },
-        dataType: 'json',
-        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'))},
-        success: function(produtos) {
-            vendaAtiva().produtos([]);
-            produtos.forEach(function(p) {
-                vendaAtiva().produtos.push(new ProdutoModel(p.id, p.produto, p.preco, p.quantidade));
-            });
+        $.ajax({
+            type: 'get',
+            url: '/vendas/produtos_da_venda/',
+            data: {
+                id: vendaAtiva().id
+            },
+            dataType: 'json',
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'))},
+            success: function(produtos) {
+                vendaAtiva().produtos([]);
+                produtos.forEach(function(p) {
+                    vendaAtiva().produtos.push(new ProdutoModel(p.id, p.produto, p.preco, p.quantidade));
+                });
 
-            $.ajax({
-                type: 'get',
-                url: '/vendas/servicos_da_venda/',
-                data: {
-                    id: vendaAtiva().id
-                },
-                dataType: 'json',
-                beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'))},
-                success: function(servicos) {
-                    vendaAtiva().servicos([]);
-                    servicos.forEach(function(s) {
-                        vendaAtiva().servicos.push(new ServicoModel(s.id, s.servico, s.quantidade));
-                    });
+                $.ajax({
+                    type: 'get',
+                    url: '/vendas/servicos_da_venda/',
+                    data: {
+                        id: vendaAtiva().id
+                    },
+                    dataType: 'json',
+                    beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'))},
+                    success: function(servicos) {
+                        vendaAtiva().servicos([]);
+                        servicos.forEach(function(s) {
+                            vendaAtiva().servicos.push(new ServicoModel(s.id, s.servico, s.quantidade));
+                        });
 
-                    $('#vendas-abertas').dialog('close');
-                }
-            });
-        }
-    });
+                        $('#vendas-abertas').dialog('close');
+                    }
+                });
+            }
+        });
+    } else {
+        $('#vendas-abertas').dialog('close');
+    }
 }
 
 function reajusta(){
@@ -167,11 +171,7 @@ function vendaAtiva() {
     return vendasAbertas.vendaAtiva();
 }
 
-$(function(){
-
-    // Inicia a lista de vendas abertas
-    vendasAbertas = new VendasModel();
-
+function carregaVendasAbertas() {
     $.ajax({
         type: 'get',
         url: '/vendas/vendas_em_aberto/',
@@ -185,6 +185,30 @@ $(function(){
             ko.applyBindings(vendasAbertas);
         }
     });
+}
+
+function atualizaVendasAbertas() {
+    $.ajax({
+        type: 'get',
+        url: '/vendas/vendas_em_aberto/',
+        dataType: 'json',
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'))},
+        success: function(vendas) {
+            vendasAbertas.vendaAtiva(new VendaModel());
+            vendasAbertas.vendas([]);
+            vendas.forEach(function(v) {
+                vendasAbertas.vendas.push(new VendaModel(v.id, v.cliente_id, v.cliente_nome));
+            });
+        }
+    });   
+}
+
+$(function(){
+
+    // Inicia a lista de vendas abertas
+    vendasAbertas = new VendasModel();
+
+    carregaVendasAbertas();
 
     // Nova venda
     shortcut.add('F2', function(){
@@ -202,47 +226,51 @@ $(function(){
     // Fechar venda
     shortcut.add('F3', function(){
 
-        if (vendaAtiva().id && !vendaAtiva().cliente().id) {
-            informarCliente();
-            return false;
-        }
-
-        $("#footer #info").text("FECHANDO VENDA");
-
-        var fechada = false;
-
-        $( '#fechar-venda' ).dialog({
-            title: 'Fechar Venda',
-            modal: true,
-            resizable: false,
-            height: 300,
-            width: 400,
-            buttons: {
-                Fechar: function(){
-                    $.ajax({
-                        type: 'post',
-                        url: '/vendas/fechar/',
-                        data: {
-                            id: vendaAtiva().id,
-                            desconto: vendaAtiva().desconto()
-                        },
-                        dataType: 'json',
-                        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'))},
-                        success: function() {
-                            $('#fechar-venda').dialog('close');
-                        }
-                    });
-
-                    fechada = true;
-                }
-            },
-            close: function(){
-                if (fechada)
-                    $("#footer #info").text("VENDA FECHADA");
-                else
-                    $("#footer #info").text("VENDA");
+        if (vendaAtiva().id) {
+            if (vendaAtiva().id && !vendaAtiva().cliente().id) {
+                informarCliente();
+                return false;
             }
-        });
+
+            $("#footer #info").text("FECHANDO VENDA");
+
+            var fechada = false;
+
+            $( '#fechar-venda' ).dialog({
+                title: 'Fechar Venda',
+                modal: true,
+                resizable: false,
+                height: 300,
+                width: 400,
+                buttons: {
+                    Fechar: function(){
+                        $.ajax({
+                            type: 'post',
+                            url: '/vendas/fechar/',
+                            data: {
+                                id: vendaAtiva().id,
+                                desconto: vendaAtiva().desconto()
+                            },
+                            dataType: 'json',
+                            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'))},
+                            success: function() {
+                                $('#fechar-venda').dialog('close');
+                            }
+                        });
+
+                        fechada = true;
+
+                        atualizaVendasAbertas();
+                    }
+                },
+                close: function(){
+                    if (fechada)
+                        $("#footer #info").text("VENDA FECHADA");
+                    else
+                        $("#footer #info").text("VENDA");
+                }
+            });
+        }
     });
     
     // Cancelar venda
@@ -263,6 +291,8 @@ $(function(){
                       $( this ).dialog( "close" );
 
                       $("#footer #info").text("VENDA CANCELADA");
+
+                      atualizaVendasAbertas();
                     }
                   }
                 });
@@ -398,6 +428,7 @@ $(function(){
         }
     });
 
+    $(".quantidade").die("keydown");
     $(".quantidade").live("keydown", function (e) {
         
         var keyCode = e.keyCode || e.which,
@@ -431,6 +462,7 @@ $(function(){
         }
     });
 
+    $(".select").die("keydown");
     $(".select").live("keydown", function (e) {
         
         var keyCode = e.keyCode || e.which,
@@ -483,7 +515,7 @@ $(function(){
                 return false;
             }
 
-            if (!vendaAtiva())
+            if (!vendaAtiva().id)
                 novaVenda();
 
             vendaAtiva().produtos.push(new ProdutoModel(ui.item.id, ui.item.label, ui.item.preco, 1));
@@ -510,7 +542,7 @@ $(function(){
                 return false;
             }
 
-            if (!vendaAtiva())
+            if (!vendaAtiva().id)
                 novaVenda();
 
             vendaAtiva().servicos.push(new ServicoModel(ui.item.id, ui.item.label, 1));
@@ -533,6 +565,7 @@ $(function(){
         }
     });
 
+    $("#grid-produtos .quantidade").die("keypress");
     $("#grid-produtos .quantidade").live("keypress", function(event) {
         if ( event.which == 13 ) {
             if (pesquisandoProduto) {
@@ -575,6 +608,7 @@ $(function(){
         }
     });
 
+    $("#grid-servicos .quantidade").die("keypress");
     $("#grid-servicos .quantidade").live("keypress", function(event) {
         if ( event.which == 13 ) {
             if (pesquisandoServico) {
@@ -615,6 +649,7 @@ $(function(){
         }
     });
 
+    $("#vendas-abertas .select").die("click");
     $("#vendas-abertas .select").live("click", function(e){
         e.preventDefault();
 

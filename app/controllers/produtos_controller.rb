@@ -39,7 +39,7 @@ class ProdutosController < ApplicationController
   def pesquisa
     if params[:term]
       like = "%".concat(params[:term].upcase.concat("%"))
-      produtos = Produto.where("upper(descricao) like ?", like).order(:descricao)
+      produtos = Produto.where("upper(descricao) like ? and quantidade > 0", like).order(:descricao)
     else
       produtos = Produto.all
     end

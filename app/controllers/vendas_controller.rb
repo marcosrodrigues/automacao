@@ -92,6 +92,16 @@ class VendasController < ApplicationController
 
     item_venda = venda.item_venda.find_by_produto_id(params[:id_produto])
 
+    estoque = MovimentacaoEstoque.new
+    estoque.produto = item_venda.produto
+    estoque.operacao = 1
+    estoque.quantidade = item_venda.quantidade
+    estoque.save
+
+    produto = item_venda.produto
+    produto.quantidade += item_venda.quantidade
+    produto.save
+
     item_venda.destroy
 
     respond_to do |format|
