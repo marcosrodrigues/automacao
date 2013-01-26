@@ -189,7 +189,10 @@ $(function(){
     // Nova venda
     shortcut.add('F2', function(){
 
-        // TODO: Validar se foi informado o cliente na venda ativa
+        if (vendaAtiva().id && !vendaAtiva().cliente().id) {
+            informarCliente();
+            return false;
+        }
 
         novaVenda();
 
@@ -244,7 +247,27 @@ $(function(){
     
     // Cancelar venda
     shortcut.add('F4', function(){
-        
+        $.ajax({
+            type: 'post',
+            url: '/vendas/cancelar/',
+            data: {
+                id: vendaAtiva().id
+            },
+            dataType: 'json',
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'))},
+            success: function() {
+                $( "#msg-venda-cancelada" ).dialog({
+                  modal: true,
+                  buttons: {
+                    Ok: function() {
+                      $( this ).dialog( "close" );
+
+                      $("#footer #info").text("VENDA CANCELADA");
+                    }
+                  }
+                });
+            }
+        });
     });
 
     // Coloca foco na pesquisa de produtos
@@ -455,8 +478,6 @@ $(function(){
         source: '/produtos/pesquisa',
         select: function(event, ui) {
 
-            // TODO: ver se ja foi adicionado o mesmo produto
-
             if (vendaAtiva().id && !vendaAtiva().cliente().id) {
                 informarCliente();
                 return false;
@@ -483,8 +504,6 @@ $(function(){
         delay: 1000,
         source: '/servicos/pesquisa',
         select: function(event, ui) {
-
-            // TODO: ver se ja foi adicionado o mesmo serviço
 
             if (vendaAtiva().id && !vendaAtiva().cliente().id) {
                 informarCliente();

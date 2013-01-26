@@ -10,6 +10,7 @@ Automacao::Application.routes.draw do
   post "vendas/informar_cliente"
   post "vendas/adiciona_produto"
   post "vendas/adiciona_servico"
+  post "vendas/cancelar"
   get "vendas/report"
   get "vendas/recibo"
   get "vendas/vendas_em_aberto"

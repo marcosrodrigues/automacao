@@ -112,7 +112,7 @@ class VendasController < ApplicationController
   end
 
   def vendas_em_aberto
-    vendas = Venda.find_all_by_fechada(false).map do |v|
+    vendas = Venda.find_all_by_fechada_and_cancelada(false, false).map do |v|
       {
         :id => v.id,
         :cliente_id => v.cliente_id,
@@ -129,6 +129,17 @@ class VendasController < ApplicationController
     venda = Venda.find(params[:id])
     venda.desconto = params[:desconto]
     venda.fechada = true
+    
+    if venda.save 
+      respond_to do |format|
+        format.json { render :json => :success}
+      end
+    end
+  end
+
+  def cancelar
+    venda = Venda.find(params[:id])
+    venda.cancelada = true
     
     if venda.save 
       respond_to do |format|
