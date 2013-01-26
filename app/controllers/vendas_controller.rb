@@ -13,44 +13,101 @@ class VendasController < ApplicationController
 
   def adiciona_produto
 
-    # TODO - se o produto ja tiver sido adicionado alterar a quantidade
+    venda = Venda.find(params[:id])
 
-    item_venda = ItemVenda.new
-    item_venda.venda = Venda.find(params[:id])
-    item_venda.produto = Produto.find(params[:id_produto])
-    item_venda.quantidade = params[:quantidade]
+    item_venda = venda.item_venda.find_by_produto_id(params[:id_produto])
 
-    if item_venda.save
-      
-      estoque = MovimentacaoEstoque.new
-      estoque.produto = item_venda.produto
-      estoque.operacao = 2
-      estoque.quantidade = item_venda.quantidade
-      estoque.save
+    if item_venda
+      diferencaQuantidade = (params[:quantidade]).to_i - item_venda.quantidade
 
-      produto = item_venda.produto
-      produto.quantidade -= item_venda.quantidade
-      produto.save
+      if diferencaQuantidade < 0
+        diferencaQuantidade = diferencaQuantidade * -1
+      end
 
-      respond_to do |format|
-        format.json { render :json => :success}
+      item_venda.quantidade = params[:quantidade]
+
+      if item_venda.save
+        estoque = MovimentacaoEstoque.new
+        estoque.produto = item_venda.produto
+        estoque.operacao = 2
+        estoque.quantidade = diferencaQuantidade
+        estoque.save
+
+        produto = item_venda.produto
+        produto.quantidade -= diferencaQuantidade
+        produto.save
+
+        respond_to do |format|
+          format.json { render :json => :success}
+        end
+      end
+    else
+      item_venda = ItemVenda.new
+      item_venda.venda = venda
+      item_venda.produto = Produto.find(params[:id_produto])
+      item_venda.quantidade = params[:quantidade]
+
+      if item_venda.save
+        estoque = MovimentacaoEstoque.new
+        estoque.produto = item_venda.produto
+        estoque.operacao = 2
+        estoque.quantidade = item_venda.quantidade
+        estoque.save
+
+        produto = item_venda.produto
+        produto.quantidade -= item_venda.quantidade
+        produto.save
+
+        respond_to do |format|
+          format.json { render :json => :success}
+        end
       end
     end
   end
 
   def adiciona_servico
 
-    # TODO - se o serviço ja tiver sido adicionado alterar a quantidade
+    venda = Venda.find(params[:id])
 
-    venda_servico = VendaServico.new
-    venda_servico.venda = Venda.find(params[:id])
-    venda_servico.servico = Servico.find(params[:id_servico])
-    venda_servico.quantidade = params[:quantidade]
+    venda_servico = venda.venda_servico.find_by_servico_id(params[:id_servico])
+
+    if venda_servico
+      venda_servico.quantidade = params[:quantidade]
+    else
+      venda_servico = VendaServico.new
+      venda_servico.venda = venda
+      venda_servico.servico = Servico.find(params[:id_servico])
+      venda_servico.quantidade = params[:quantidade]
+    end
 
     if venda_servico.save
       respond_to do |format|
         format.json { render :json => :success}
       end
+    end
+  end
+
+  def excluir_produto
+    venda = Venda.find(params[:id])
+
+    item_venda = venda.item_venda.find_by_produto_id(params[:id_produto])
+
+    item_venda.destroy
+
+    respond_to do |format|
+      format.json { render :json => :success}
+    end
+  end
+
+  def excluir_servico
+    venda = Venda.find(params[:id])
+
+    venda_servico = venda.venda_servico.find_by_servico_id(params[:id_servico])
+
+    venda_servico.destroy
+
+    respond_to do |format|
+      format.json { render :json => :success}
     end
   end
 
@@ -92,10 +149,12 @@ class VendasController < ApplicationController
   end
 
   def produtos_da_venda
-    produtos = Venda.find(params[:id]).item_venda.map do |p|
+    produtos = Venda.find(params[:id]).item_venda.order(:id).map do |p|
       {
-        :id => p.id,
-        :produto => p.produto.descricao
+        :id => p.produto.id,
+        :produto => p.produto.descricao,
+        :preco => p.produto.preco_atual,
+        :quantidade => p.quantidade
       }
     end
 
@@ -105,10 +164,11 @@ class VendasController < ApplicationController
   end
 
   def servicos_da_venda
-    servicos = Venda.find(params[:id]).venda_servico.map do |s|
+    servicos = Venda.find(params[:id]).venda_servico.order(:id).map do |s|
       {
-        :id => s.id,
-        :servico => s.servico.descricao
+        :id => s.servico.id,
+        :servico => s.servico.descricao,
+        :quantidade => s.quantidade
       }
     end
 

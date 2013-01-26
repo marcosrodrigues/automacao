@@ -1,19 +1,19 @@
-function ProdutoModel(id, descricao, preco){
+function ProdutoModel(id, descricao, preco, quantidade){
     this.id = id;
     this.descricao = ko.observable(descricao);
     this.preco = ko.observable(preco);
-    this.quantidade = ko.observable(1);
+    this.quantidade = ko.observable(quantidade);
 
     this.total = ko.computed(function(){
         return this.preco() * this.quantidade();
     }, this);
 }
 
-function ServicoModel(id, descricao) {
+function ServicoModel(id, descricao, quantidade) {
     this.id = id;
     this.descricao = ko.observable(descricao);
     this.preco = ko.observable(20);
-    this.quantidade = ko.observable(1);
+    this.quantidade = ko.observable(quantidade);
 
     this.total = ko.computed(function(){
         return this.preco() * this.quantidade();
@@ -73,7 +73,7 @@ function selecionarVenda(id) {
         success: function(produtos) {
             vendaAtiva().produtos([]);
             produtos.forEach(function(p) {
-                vendaAtiva().produtos.push(new ProdutoModel(p.id, p.produto, 10));
+                vendaAtiva().produtos.push(new ProdutoModel(p.id, p.produto, p.preco, p.quantidade));
             });
 
             $.ajax({
@@ -87,7 +87,7 @@ function selecionarVenda(id) {
                 success: function(servicos) {
                     vendaAtiva().servicos([]);
                     servicos.forEach(function(s) {
-                        vendaAtiva().servicos.push(new ServicoModel(s.id, s.servico));
+                        vendaAtiva().servicos.push(new ServicoModel(s.id, s.servico, s.quantidade));
                     });
 
                     $('#vendas-abertas').dialog('close');
@@ -325,11 +325,54 @@ $(function(){
         $("#grid-produtos tbody tr:first .quantidade").focus();
     });
 
-    // Navegar nos produtos
+    // Navegar nos servicos
     shortcut.add('F11', function(){
         $("#grid-servicos tbody tr:first").addClass("active");
 
         $("#grid-servicos tbody tr:first .quantidade").focus();
+    });
+
+    // Excluir produto selecionado
+    shortcut.add('Ctrl+A', function(){
+
+        var produtoId = $("#grid-produtos .active").find(".id").text();
+
+        if (produtoId) {
+            $.ajax({
+                type: 'delete',
+                url: '/vendas/excluir_produto/',
+                data: {
+                    id: vendaAtiva().id,
+                    id_produto: produtoId
+                },
+                dataType: 'json',
+                beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'))},
+                success: function() {
+                    selecionarVenda(vendaAtiva().id);
+                }
+            });
+        }
+    });
+
+    // Excluir produto selecionado
+    shortcut.add('Ctrl+S', function(){
+        var servicoId = $("#grid-servicos .active").find(".id").text();
+
+        if (servicoId) {
+            $.ajax({
+                type: 'delete',
+                url: '/vendas/excluir_servico/',
+                data: {
+                    id: vendaAtiva().id,
+                    id_servico: servicoId
+                },
+                dataType: 'json',
+                beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'))},
+                success: function() {
+                    selecionarVenda(vendaAtiva().id);
+                }
+            });
+        }
     });
 
     $(".quantidade").live("keydown", function (e) {
@@ -404,6 +447,8 @@ $(function(){
         reajusta();
     });
 
+    var pesquisandoProduto;
+
     $('#pesquisa-produtos').autocomplete({
         minLength: 2,
         delay: 1000,
@@ -420,14 +465,18 @@ $(function(){
             if (!vendaAtiva())
                 novaVenda();
 
-            vendaAtiva().produtos.push(new ProdutoModel(ui.item.id, ui.item.descricao, ui.item.preco));
+            vendaAtiva().produtos.push(new ProdutoModel(ui.item.id, ui.item.label, ui.item.preco, 1));
 
             $("#grid-produtos .quantidade").last().focus();
+
+            pesquisandoProduto = true;
         },
         close: function() {
             $('#pesquisa-produtos').val('');
         }
     });
+
+    var pesquisandoServico;
 
     $('#pesquisa-servicos').autocomplete({
         minLength: 2,
@@ -445,9 +494,11 @@ $(function(){
             if (!vendaAtiva())
                 novaVenda();
 
-            vendaAtiva().servicos.push(new ServicoModel(ui.item.id, ui.item.label));
+            vendaAtiva().servicos.push(new ServicoModel(ui.item.id, ui.item.label, 1));
 
             $("#grid-servicos .quantidade").last().focus();
+
+            pesquisandoServico = true;
         },
         close: function() {
             $('#pesquisa-servicos').val('');
@@ -465,43 +516,83 @@ $(function(){
 
     $("#grid-produtos .quantidade").live("keypress", function(event) {
         if ( event.which == 13 ) {
-            $.ajax({
-                type: 'post',
-                url: '/vendas/adiciona_produto/',
-                data: {
-                    id: vendaAtiva().id,
-                    id_produto: vendaAtiva().produtos()[vendaAtiva().produtos().length - 1].id,
-                    quantidade: vendaAtiva().produtos()[vendaAtiva().produtos().length - 1].quantidade
-                },
-                dataType: 'json',
-                beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'))},
-                success: function() {
-                    $('#pesquisa-produtos').focus();
+            if (pesquisandoProduto) {
+                $.ajax({
+                    type: 'post',
+                    url: '/vendas/adiciona_produto/',
+                    data: {
+                        id: vendaAtiva().id,
+                        id_produto: vendaAtiva().produtos()[vendaAtiva().produtos().length - 1].id,
+                        quantidade: $(this).val()
+                    },
+                    dataType: 'json',
+                    beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'))},
+                    success: function() {
+                        $('#pesquisa-produtos').focus();
 
-                    $("#footer #info").text("VENDA");
-                }
-            });
+                        $("#footer #info").text("VENDA");
+
+                        pesquisandoProduto = false;
+                    }
+                });
+            } else {
+                $.ajax({
+                    type: 'post',
+                    url: '/vendas/adiciona_produto/',
+                    data: {
+                        id: vendaAtiva().id,
+                        id_produto: $(this).parents("tr").find(".id").text(),
+                        quantidade: $(this).val()
+                    },
+                    dataType: 'json',
+                    beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'))},
+                    success: function() {
+                        $('#pesquisa-produtos').focus();
+
+                        $("#footer #info").text("VENDA");
+                    }
+                });
+            }
         }
     });
 
     $("#grid-servicos .quantidade").live("keypress", function(event) {
         if ( event.which == 13 ) {
-            $.ajax({
-                type: 'post',
-                url: '/vendas/adiciona_servico/',
-                data: {
-                    id: vendaAtiva().id,
-                    id_servico: vendaAtiva().servicos()[vendaAtiva().servicos().length - 1].id,
-                    quantidade: vendaAtiva().servicos()[vendaAtiva().servicos().length - 1].quantidade
-                },
-                dataType: 'json',
-                beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'))},
-                success: function() {
-                    $('#pesquisa-servicos').focus();
+            if (pesquisandoServico) {
+                $.ajax({
+                    type: 'post',
+                    url: '/vendas/adiciona_servico/',
+                    data: {
+                        id: vendaAtiva().id,
+                        id_servico: vendaAtiva().servicos()[vendaAtiva().servicos().length - 1].id,
+                        quantidade: $(this).val()
+                    },
+                    dataType: 'json',
+                    beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'))},
+                    success: function() {
+                        $('#pesquisa-servicos').focus();
 
-                    $("#footer #info").text("VENDA");
-                }
-            });
+                        $("#footer #info").text("VENDA");
+                    }
+                });
+            } else {
+                $.ajax({
+                    type: 'post',
+                    url: '/vendas/adiciona_servico/',
+                    data: {
+                        id: vendaAtiva().id,
+                        id_servico: $(this).parents("tr").find(".id").text(),
+                        quantidade: $(this).val()
+                    },
+                    dataType: 'json',
+                    beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'))},
+                    success: function() {
+                        $('#pesquisa-servicos').focus();
+
+                        $("#footer #info").text("VENDA");
+                    }
+                });
+            }
         }
     });
 

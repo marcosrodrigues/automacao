@@ -15,6 +15,8 @@ Automacao::Application.routes.draw do
   get "vendas/vendas_em_aberto"
   get "vendas/produtos_da_venda"
   get "vendas/servicos_da_venda"
+  delete "vendas/excluir_produto"
+  delete "vendas/excluir_servico"
 
   get "home/index"
 

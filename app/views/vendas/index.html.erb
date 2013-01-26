@@ -51,6 +51,7 @@
       <table width="100%">
         <tbody data-bind="foreach: vendaAtiva().produtos">
             <tr>
+              <td class="id" data-bind="text: id" style="display: none"></td>
               <td width="60%" data-bind="text: descricao"></td>
               <td width="10%" align="right"><input class="quantidade" data-bind="value: quantidade" /></td>
               <td align="right" data-bind="text: preco"></td>
@@ -74,6 +75,7 @@
       <table width="100%">
         <tbody data-bind="foreach: vendaAtiva().servicos">
             <tr>
+              <td class="id" data-bind="text: id" style="display: none"></td>
               <td width="60%" data-bind="text: descricao"></td>
               <td width="10%" align="right"><input class="quantidade" data-bind="value: quantidade" /></td>
               <td align="right" data-bind="text: preco"></td>
