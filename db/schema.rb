@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130126173805) do
+ActiveRecord::Schema.define(:version => 20130130010806) do
 
   create_table "clientes", :force => true do |t|
     t.string   "nome"
@@ -86,6 +86,16 @@ ActiveRecord::Schema.define(:version => 20130126173805) do
   end
 
   add_index "precos_produto", ["produto_id"], :name => "index_precos_produto_on_produto_id"
+
+  create_table "precos_servico", :force => true do |t|
+    t.integer  "servico_id"
+    t.date     "data"
+    t.float    "preco"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "precos_servico", ["servico_id"], :name => "index_precos_servico_on_servico_id"
 
   create_table "produtos", :force => true do |t|
     t.integer  "tipo_produto_id"

@@ -39,7 +39,51 @@ class ServicosController < ApplicationController
     else
       servicos = Servico.all
     end
-    list = servicos.limit(15).map { |s| Hash[id: s.id, label: s.descricao, name: s.descricao] }
+    list = servicos.limit(15).map { |s| 
+      Hash[
+        id: s.id, 
+        label: s.descricao, 
+        name: s.descricao,
+        preco: s.preco_atual
+      ] 
+    }
     render json: list
+  end
+
+  def precos
+    respond_to do |format|
+      format.json { render :json => PrecoServico.find_all_by_servico_id(params[:id])}
+    end
+  end
+
+  def salvar_preco
+    preco_servico = PrecoServico.new(:data => params[:data], :preco => params[:preco])
+    preco_servico.servico = Servico.find(params[:servico_id])
+
+    if preco_servico.save
+      respond_to do |format|
+        format.json { render :json => :success}
+      end
+    end
+  end
+
+  def alterar_preco
+    preco_servico = PrecoServico.find(params[:id])
+    preco_servico.data = params[:data]
+    preco_servico.preco = params[:preco]
+
+    if preco_servico.save
+      respond_to do |format|
+        format.json { render :json => :success}
+      end
+    end
+  end
+
+  def excluir_preco
+    PrecoServico.find(params[:id]).destroy
+
+    respond_to do |format|
+      format.json { render :json => :success}
+    end
   end
 end

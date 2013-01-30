@@ -189,7 +189,8 @@ class VendasController < ApplicationController
       {
         :id => s.servico.id,
         :servico => s.servico.descricao,
-        :quantidade => s.quantidade
+        :quantidade => s.quantidade,
+        :preco => s.servico.preco_atual
       }
     end
 

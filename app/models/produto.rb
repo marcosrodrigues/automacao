@@ -4,6 +4,10 @@ class Produto < ActiveRecord::Base
   attr_accessible :codigo_barras, :descricao, :preco_venda, :quantidade, :tipo_produto, :preco_compra, :lucro
 
   def preco_atual
-  	PrecoProduto.where(:produto_id => self.id).order(:data).all.last.preco
+  	if PrecoProduto.find_by_produto_id(self.id)
+  		PrecoProduto.where(:produto_id => self.id).order(:data).all.last.preco
+  	else
+  		0
+  	end
   end
 end

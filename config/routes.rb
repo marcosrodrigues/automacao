@@ -69,9 +69,13 @@ Automacao::Application.routes.draw do
 
   # Serviço
   get "servicos/lista"
+  get "servicos/precos"
   post "servicos/salvar"
+  post "servicos/salvar_preco"
   delete "servicos/excluir"
+  delete "servicos/excluir_preco"
   put "servicos/alterar"
+  put "servicos/alterar_preco"
   match "/servicos/pesquisa" => "servicos#pesquisa"
 
   # The priority is based upon order of creation:

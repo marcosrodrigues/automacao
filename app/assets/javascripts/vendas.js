@@ -9,10 +9,10 @@ function ProdutoModel(id, descricao, preco, quantidade){
     }, this);
 }
 
-function ServicoModel(id, descricao, quantidade) {
+function ServicoModel(id, descricao, quantidade, preco) {
     this.id = id;
     this.descricao = ko.observable(descricao);
-    this.preco = ko.observable(20);
+    this.preco = ko.observable(preco);
     this.quantidade = ko.observable(quantidade);
 
     this.total = ko.computed(function(){
@@ -88,10 +88,12 @@ function selecionarVenda(id) {
                     success: function(servicos) {
                         vendaAtiva().servicos([]);
                         servicos.forEach(function(s) {
-                            vendaAtiva().servicos.push(new ServicoModel(s.id, s.servico, s.quantidade));
+                            vendaAtiva().servicos.push(new ServicoModel(s.id, s.servico, s.quantidade, s.preco));
                         });
 
                         $('#vendas-abertas').dialog('close');
+
+                        $("#footer #info").text("VENDA");
                     }
                 });
             }
@@ -545,7 +547,7 @@ $(function(){
             if (!vendaAtiva().id)
                 novaVenda();
 
-            vendaAtiva().servicos.push(new ServicoModel(ui.item.id, ui.item.label, 1));
+            vendaAtiva().servicos.push(new ServicoModel(ui.item.id, ui.item.label, 1, ui.item.preco));
 
             $("#grid-servicos .quantidade").last().focus();
 
